@@ -1,8 +1,42 @@
+# Xcode build
+build/
 DerivedData/
 *.xcuserstate
 xcuserdata/
+
+# Legacy Xcode
 *.xcscmblueprint
 *.xccheckout
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Obj-C/Swift
+*.hmap
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Carthage
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Editor / OS
 .DS_Store
 *.swp
-.build/
