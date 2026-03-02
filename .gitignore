@@ -42,6 +42,9 @@ fastlane/test_output
 TestResults
 TestResults.xcresult/
 
+# Mono repo checkout (CI creates this for version-check)
+mono-repo/
+
 # Editor / OS
 .DS_Store
 *.swp
