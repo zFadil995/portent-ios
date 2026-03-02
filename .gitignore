@@ -38,6 +38,10 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
+# Test results
+TestResults
+TestResults.xcresult/
+
 # Editor / OS
 .DS_Store
 *.swp
