@@ -5,7 +5,20 @@ alwaysApply: true
 
 # Portent iOS
 
-Bundle ID: `com.notitial.portent`. Swift 6, SwiftUI, MVVM, @Observable, URLSession. Targets iOS + macOS.
+Bundle ID: `com.notitial.portent`. Swift 6, SwiftUI, MVVM, @Observable, URLSession. **Minimum:** iOS 18. **visionOS:** Not supported. **macOS:** Catalyst only (not day-one).
+
+## Navigation
+
+- Root: Adaptive TabView (bottom tabs on iPhone, sidebar on iPad)
+- Per-tab: NavigationStack + NavigationDestination
+
+## Tabs (4)
+
+Dashboard | Calendar | Services | Search
+
+## State
+
+Sealed UiState: Loading | Success | Error | Refreshing(staleData). Refreshing for pull-to-refresh. @Observable for ViewModel observation.
 
 ## Feature Structure
 
