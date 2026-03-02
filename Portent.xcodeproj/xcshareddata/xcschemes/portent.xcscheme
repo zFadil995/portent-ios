@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9D6B471C2F55D9E500BE7DDD"
-               BuildableName = "portent.app"
-               BlueprintName = "portent"
+               BuildableName = "Portent.app"
+               BlueprintName = "Portent"
                ReferencedContainer = "container:portent.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9D6B47332F55D9E600BE7DDD"
-               BuildableName = "portentTests.xctest"
-               BlueprintName = "portentTests"
+               BuildableName = "PortentTests.xctest"
+               BlueprintName = "PortentTests"
                ReferencedContainer = "container:portent.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -48,8 +48,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9D6B47332F55D9E600BE7DDD"
-               BuildableName = "portentTests.xctest"
-               BlueprintName = "portentTests"
+               BuildableName = "PortentTests.xctest"
+               BlueprintName = "PortentTests"
                ReferencedContainer = "container:portent.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -70,8 +70,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9D6B471C2F55D9E500BE7DDD"
-            BuildableName = "portent.app"
-            BlueprintName = "portent"
+            BuildableName = "Portent.app"
+            BlueprintName = "Portent"
             ReferencedContainer = "container:portent.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -87,8 +87,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9D6B471C2F55D9E500BE7DDD"
-            BuildableName = "portent.app"
-            BlueprintName = "portent"
+            BuildableName = "Portent.app"
+            BlueprintName = "Portent"
             ReferencedContainer = "container:portent.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

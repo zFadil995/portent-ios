@@ -23,14 +23,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9D6B471D2F55D9E500BE7DDD /* portent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = portent.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D6B47302F55D9E600BE7DDD /* portentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = portentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D6B471D2F55D9E500BE7DDD /* Portent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Portent.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D6B47302F55D9E600BE7DDD /* PortentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PortentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		9D6B471F2F55D9E500BE7DDD /* portent */ = {
+		9D6B471F2F55D9E500BE7DDD /* Portent */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = portent;
+			path = Portent;
 			sourceTree = "<group>";
 		};
 		9D6B47312F55D9E600BE7DDD /* portentTests */ = {
@@ -64,7 +64,7 @@
 		9D6B47142F55D9E500BE7DDD = {
 			isa = PBXGroup;
 			children = (
-				9D6B471F2F55D9E500BE7DDD /* portent */,
+				9D6B471F2F55D9E500BE7DDD /* Portent */,
 				9D6B47312F55D9E600BE7DDD /* portentTests */,
 				9D6B471E2F55D9E500BE7DDD /* Products */,
 			);
@@ -73,8 +73,8 @@
 		9D6B471E2F55D9E500BE7DDD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9D6B471D2F55D9E500BE7DDD /* portent.app */,
-				9D6B47302F55D9E600BE7DDD /* portentTests.xctest */,
+				9D6B471D2F55D9E500BE7DDD /* Portent.app */,
+				9D6B47302F55D9E600BE7DDD /* PortentTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,9 +82,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9D6B471C2F55D9E500BE7DDD /* portent */ = {
+		9D6B471C2F55D9E500BE7DDD /* Portent */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9D6B47282F55D9E600BE7DDD /* Build configuration list for PBXNativeTarget "portent" */;
+			buildConfigurationList = 9D6B47282F55D9E600BE7DDD /* Build configuration list for PBXNativeTarget "Portent" */;
 			buildPhases = (
 				9D6B47192F55D9E500BE7DDD /* Sources */,
 				9D6B471A2F55D9E500BE7DDD /* Frameworks */,
@@ -95,21 +95,21 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				9D6B471F2F55D9E500BE7DDD /* portent */,
+				9D6B471F2F55D9E500BE7DDD /* Portent */,
 			);
-			name = portent;
+			name = Portent;
 			packageProductDependencies = (
 				9D6B47402F55D9E700BE7DDD /* FirebaseAnalytics */,
 				9D6B47412F55D9E700BE7DDD /* FirebaseCrashlytics */,
 				9D6B47422F55D9E700BE7DDD /* FirebaseCore */,
 			);
 			productName = portent;
-			productReference = 9D6B471D2F55D9E500BE7DDD /* portent.app */;
+			productReference = 9D6B471D2F55D9E500BE7DDD /* Portent.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9D6B47332F55D9E600BE7DDD /* portentTests */ = {
+		9D6B47332F55D9E600BE7DDD /* PortentTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9D6B47392F55D9E600BE7DDD /* Build configuration list for PBXNativeTarget "portentTests" */;
+			buildConfigurationList = 9D6B47392F55D9E600BE7DDD /* Build configuration list for PBXNativeTarget "PortentTests" */;
 			buildPhases = (
 				9D6B47342F55D9E600BE7DDD /* Sources */,
 				9D6B47352F55D9E600BE7DDD /* Frameworks */,
@@ -123,9 +123,9 @@
 			fileSystemSynchronizedGroups = (
 				9D6B47312F55D9E600BE7DDD /* portentTests */,
 			);
-			name = portentTests;
+			name = PortentTests;
 			productName = portentTests;
-			productReference = 9D6B47302F55D9E600BE7DDD /* portentTests.xctest */;
+			productReference = 9D6B47302F55D9E600BE7DDD /* PortentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -146,7 +146,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9D6B47182F55D9E500BE7DDD /* Build configuration list for PBXProject "portent" */;
+			buildConfigurationList = 9D6B47182F55D9E500BE7DDD /* Build configuration list for PBXProject "Portent" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -163,8 +163,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9D6B471C2F55D9E500BE7DDD /* portent */,
-				9D6B47332F55D9E600BE7DDD /* portentTests */,
+				9D6B471C2F55D9E500BE7DDD /* Portent */,
+				9D6B47332F55D9E600BE7DDD /* PortentTests */,
 			);
 		};
 /* End PBXProject section */
@@ -206,7 +206,7 @@
 /* Begin PBXTargetDependency section */
 		9D6B47372F55D9E600BE7DDD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9D6B471C2F55D9E500BE7DDD /* portent */;
+			target = 9D6B471C2F55D9E500BE7DDD /* Portent */;
 			targetProxy = 9D6B47382F55D9E600BE7DDD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -440,7 +440,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/portent.app/portent";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Portent.app/Portent";
 			};
 			name = Debug;
 		};
@@ -466,14 +466,14 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/portent.app/portent";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Portent.app/Portent";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9D6B47182F55D9E500BE7DDD /* Build configuration list for PBXProject "portent" */ = {
+		9D6B47182F55D9E500BE7DDD /* Build configuration list for PBXProject "Portent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9D6B47262F55D9E600BE7DDD /* Debug */,
@@ -482,7 +482,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9D6B47282F55D9E600BE7DDD /* Build configuration list for PBXNativeTarget "portent" */ = {
+		9D6B47282F55D9E600BE7DDD /* Build configuration list for PBXNativeTarget "Portent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9D6B47292F55D9E600BE7DDD /* Debug */,
@@ -491,7 +491,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9D6B47392F55D9E600BE7DDD /* Build configuration list for PBXNativeTarget "portentTests" */ = {
+		9D6B47392F55D9E600BE7DDD /* Build configuration list for PBXNativeTarget "PortentTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9D6B473A2F55D9E600BE7DDD /* Debug */,
