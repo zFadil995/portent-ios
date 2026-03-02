@@ -1,0 +1,14 @@
+reporter: "github-actions-logging"
+excluded:
+  - DerivedData
+  - .build
+  - "**/Generated"
+disabled_rules:
+  - todo
+opt_in_rules:
+  - empty_count
+  - closure_spacing
+  - explicit_init
+line_length:
+  warning: 120
+  error: 200

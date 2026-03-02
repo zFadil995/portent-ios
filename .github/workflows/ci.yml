@@ -1,0 +1,111 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  swiftlint:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: Run SwiftLint
+        run: swiftlint lint --reporter github-actions-logging
+        continue-on-error: false
+
+  unit-test:
+    runs-on: macos-15
+    needs: swiftlint
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/org.swift.swiftpm
+            ~/.swiftpm
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+
+      - name: Install xcpretty
+        run: gem install xcpretty
+
+      - name: Run unit tests
+        run: |
+          xcodebuild test \
+            -scheme portent \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=26.0' \
+            -resultBundlePath TestResults \
+            | xcpretty
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ios-test-results
+          path: TestResults.xcresult
+
+  build:
+    runs-on: macos-15
+    needs: unit-test
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install xcpretty
+        run: gem install xcpretty
+
+      - name: Build
+        run: |
+          xcodebuild build \
+            -scheme portent \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=26.0' \
+            -configuration Debug \
+            | xcpretty
+
+  version-check:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout mono repo for version.json
+        uses: actions/checkout@v4
+        with:
+          repository: zFadil995/portent
+          path: mono-repo
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install jq
+        run: brew install jq
+
+      - name: Parse version.json
+        id: version
+        run: |
+          VERSION=$(jq -r '.version' mono-repo/version.json)
+          VERSION_CODE=$(jq -r '.versionCode' mono-repo/version.json)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
+
+      - name: Parse project.pbxproj
+        id: xcode
+        run: |
+          MARKETING_VERSION=$(grep -m1 "MARKETING_VERSION" portent.xcodeproj/project.pbxproj | sed 's/.*= *\(.*\);/\1/' | tr -d ' ')
+          CURRENT_PROJECT_VERSION=$(grep -m1 "CURRENT_PROJECT_VERSION" portent.xcodeproj/project.pbxproj | sed 's/.*= *\(.*\);/\1/' | tr -d ' ')
+          echo "marketing_version=$MARKETING_VERSION" >> $GITHUB_OUTPUT
+          echo "current_project_version=$CURRENT_PROJECT_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Compare versions
+        run: |
+          JSON_VERSION="${{ steps.version.outputs.version }}"
+          JSON_VERSION_CODE="${{ steps.version.outputs.version_code }}"
+          XCODE_VERSION="${{ steps.xcode.outputs.marketing_version }}"
+          XCODE_BUILD="${{ steps.xcode.outputs.current_project_version }}"
+          if [ "$XCODE_VERSION" != "$JSON_VERSION" ] || [ "$XCODE_BUILD" != "$JSON_VERSION_CODE" ]; then
+            echo "::error::Version mismatch: project.pbxproj has MARKETING_VERSION=$XCODE_VERSION CURRENT_PROJECT_VERSION=$XCODE_BUILD but version.json has version=$JSON_VERSION versionCode=$JSON_VERSION_CODE"
+            exit 1
+          fi
+          echo "Version check passed: $XCODE_VERSION / $XCODE_BUILD"
