@@ -4,16 +4,33 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
 import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 extension Color {
     /// Dynamic color that resolves to light or dark based on interface style.
     init(light: Color, dark: Color) {
+        #if canImport(UIKit)
         self = Color(UIColor { traits in
             traits.userInterfaceStyle == .dark
                 ? UIColor(dark)
                 : UIColor(light)
         })
+        #elseif canImport(AppKit)
+        self = Color(NSColor(name: nil) { appearance in
+            switch appearance.bestMatch(from: [.darkAqua, .aqua]) {
+            case .darkAqua?:
+                return NSColor(dark)
+            default:
+                return NSColor(light)
+            }
+        })
+        #else
+        self = light
+        #endif
     }
 
     /// Creates a color from a hex string (#RRGGBB or #RGB).
