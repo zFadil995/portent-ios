@@ -37,7 +37,7 @@ jobs:
 
       - name: Run unit tests
         run: |
-          xcodebuild test \
+          env CODE_SIGNING_ALLOWED=NO xcodebuild test \
             -scheme portent \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=26.0' \
             -resultBundlePath TestResults \
@@ -60,7 +60,7 @@ jobs:
 
       - name: Build
         run: |
-          xcodebuild build \
+          env CODE_SIGNING_ALLOWED=NO xcodebuild build \
             -scheme portent \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=26.0' \
             -configuration Debug \
@@ -86,9 +86,9 @@ jobs:
         id: version
         run: |
           VERSION=$(jq -r '.version' mono-repo/version.json)
-          VERSION_CODE=$(jq -r '.versionCode' mono-repo/version.json)
+          IOS_BUILD=$(jq -r '.ios_build' mono-repo/version.json)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
+          echo "ios_build=$IOS_BUILD" >> $GITHUB_OUTPUT
 
       - name: Parse project.pbxproj
         id: xcode
@@ -101,11 +101,11 @@ jobs:
       - name: Compare versions
         run: |
           JSON_VERSION="${{ steps.version.outputs.version }}"
-          JSON_VERSION_CODE="${{ steps.version.outputs.version_code }}"
+          JSON_IOS_BUILD="${{ steps.version.outputs.ios_build }}"
           XCODE_VERSION="${{ steps.xcode.outputs.marketing_version }}"
           XCODE_BUILD="${{ steps.xcode.outputs.current_project_version }}"
-          if [ "$XCODE_VERSION" != "$JSON_VERSION" ] || [ "$XCODE_BUILD" != "$JSON_VERSION_CODE" ]; then
-            echo "::error::Version mismatch: project.pbxproj has MARKETING_VERSION=$XCODE_VERSION CURRENT_PROJECT_VERSION=$XCODE_BUILD but version.json has version=$JSON_VERSION versionCode=$JSON_VERSION_CODE"
+          if [ "$XCODE_VERSION" != "$JSON_VERSION" ] || [ "$XCODE_BUILD" != "$JSON_IOS_BUILD" ]; then
+            echo "::error::Version mismatch: project.pbxproj has MARKETING_VERSION=$XCODE_VERSION CURRENT_PROJECT_VERSION=$XCODE_BUILD but version.json has version=$JSON_VERSION ios_build=$JSON_IOS_BUILD"
             exit 1
           fi
           echo "Version check passed: $XCODE_VERSION / $XCODE_BUILD"
