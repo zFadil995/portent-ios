@@ -8,7 +8,37 @@
 
 /* Begin PBXFileReference section */
 		9D6B471D2F55D9E500BE7DDD /* portent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = portent.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D6B47302F55D9E600BE7DDD /* portentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = portentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9D6B47432F55D9E700BE7DDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9D6B47402F55D9E700BE7DDD /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D6B47432F55D9E700BE7DDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		9D6B47412F55D9E700BE7DDD /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D6B47432F55D9E700BE7DDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		9D6B47422F55D9E700BE7DDD /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D6B47432F55D9E700BE7DDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		9D6B471F2F55D9E500BE7DDD /* portent */ = {
@@ -16,10 +46,32 @@
 			path = portent;
 			sourceTree = "<group>";
 		};
+		9D6B47312F55D9E600BE7DDD /* portentTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = portentTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXContainerItemProxy section */
+		9D6B47382F55D9E600BE7DDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D6B47152F55D9E500BE7DDD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D6B471C2F55D9E500BE7DDD;
+			remoteInfo = portent;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9D6B471A2F55D9E500BE7DDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D6B47352F55D9E600BE7DDD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				9D6B471F2F55D9E500BE7DDD /* portent */,
+				9D6B47312F55D9E600BE7DDD /* portentTests */,
 				9D6B471E2F55D9E500BE7DDD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				9D6B471D2F55D9E500BE7DDD /* portent.app */,
+				9D6B47302F55D9E600BE7DDD /* portentTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,10 +119,34 @@
 			);
 			name = portent;
 			packageProductDependencies = (
+				9D6B47402F55D9E700BE7DDD /* FirebaseAnalytics */,
+				9D6B47412F55D9E700BE7DDD /* FirebaseCrashlytics */,
+				9D6B47422F55D9E700BE7DDD /* FirebaseCore */,
 			);
 			productName = portent;
 			productReference = 9D6B471D2F55D9E500BE7DDD /* portent.app */;
 			productType = "com.apple.product-type.application";
+		};
+		9D6B47332F55D9E600BE7DDD /* portentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D6B47392F55D9E600BE7DDD /* Build configuration list for PBXNativeTarget "portentTests" */;
+			buildPhases = (
+				9D6B47342F55D9E600BE7DDD /* Sources */,
+				9D6B47352F55D9E600BE7DDD /* Frameworks */,
+				9D6B47362F55D9E600BE7DDD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9D6B47372F55D9E600BE7DDD /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				9D6B47312F55D9E600BE7DDD /* portentTests */,
+			);
+			name = portentTests;
+			productName = portentTests;
+			productReference = 9D6B47302F55D9E600BE7DDD /* portentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -83,6 +161,9 @@
 					9D6B471C2F55D9E500BE7DDD = {
 						CreatedOnToolsVersion = 26.3;
 					};
+					9D6B47332F55D9E600BE7DDD = {
+						CreatedOnToolsVersion = 26.3;
+					};
 				};
 			};
 			buildConfigurationList = 9D6B47182F55D9E500BE7DDD /* Build configuration list for PBXProject "portent" */;
@@ -95,17 +176,28 @@
 			mainGroup = 9D6B47142F55D9E500BE7DDD;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
+			packageReferences = (
+				9D6B47432F55D9E700BE7DDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 9D6B471E2F55D9E500BE7DDD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				9D6B471C2F55D9E500BE7DDD /* portent */,
+				9D6B47332F55D9E600BE7DDD /* portentTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9D6B471B2F55D9E500BE7DDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D6B47362F55D9E600BE7DDD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +214,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9D6B47342F55D9E600BE7DDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9D6B47372F55D9E600BE7DDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9D6B471C2F55D9E500BE7DDD /* portent */;
+			targetProxy = 9D6B47382F55D9E600BE7DDD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9D6B47262F55D9E600BE7DDD /* Debug */ = {
@@ -327,6 +434,52 @@
 			};
 			name = Release;
 		};
+		9D6B473A2F55D9E600BE7DDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T36X4BL96W;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.notitial.portentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9D6B473B2F55D9E600BE7DDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T36X4BL96W;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.notitial.portentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -344,6 +497,15 @@
 			buildConfigurations = (
 				9D6B47292F55D9E600BE7DDD /* Debug */,
 				9D6B472A2F55D9E600BE7DDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D6B47392F55D9E600BE7DDD /* Build configuration list for PBXNativeTarget "portentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D6B473A2F55D9E600BE7DDD /* Debug */,
+				9D6B473B2F55D9E600BE7DDD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
