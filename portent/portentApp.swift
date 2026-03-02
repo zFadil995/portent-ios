@@ -12,7 +12,7 @@ import FirebaseCore
 #endif
 
 @main
-struct portentApp: App {
+struct PortentApp: App {
     init() {
         #if canImport(FirebaseCore)
         FirebaseApp.configure()

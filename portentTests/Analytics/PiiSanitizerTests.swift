@@ -32,7 +32,7 @@ final class PiiSanitizerTests: XCTestCase {
         let apiKey = "my-secret-key"
         let params: [String: String] = [
             "error": "Auth failed with key \(apiKey)",
-            "url": "https://example.com",
+            "url": "https://example.com"
         ]
         let secrets: Set<String> = [apiKey, "https://example.com"]
         let result = PiiSanitizer.sanitizeParameters(params, knownSecrets: secrets)

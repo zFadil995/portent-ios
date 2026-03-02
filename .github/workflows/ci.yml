@@ -25,12 +25,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Create Firebase stub for tests
+        run: cp portent/GoogleService-Info.plist.template portent/GoogleService-Info.plist
+
       - uses: actions/cache@v4
         with:
           path: |
             ~/Library/Caches/org.swift.swiftpm
             ~/.swiftpm
-          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          key: ${{ runner.os }}-spm-${{ hashFiles('portent.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
 
       - name: Install xcpretty
         run: gem install xcpretty
@@ -39,7 +42,7 @@ jobs:
         run: |
           env CODE_SIGNING_ALLOWED=NO xcodebuild test \
             -scheme portent \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=26.0' \
+            -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.2' \
             -resultBundlePath TestResults \
             | xcpretty
 
@@ -55,6 +58,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Create Firebase stub for build
+        run: cp portent/GoogleService-Info.plist.template portent/GoogleService-Info.plist
+
       - name: Install xcpretty
         run: gem install xcpretty
 
@@ -62,7 +68,7 @@ jobs:
         run: |
           env CODE_SIGNING_ALLOWED=NO xcodebuild build \
             -scheme portent \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=26.0' \
+            -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.2' \
             -configuration Debug \
             | xcpretty
 
