@@ -1,0 +1,40 @@
+---
+description: Git branch, commit, and PR conventions
+alwaysApply: false
+---
+
+# Git Workflow
+
+## Branch Naming
+
+`feature/<slug>`, `fix/<slug>` (e.g. `feature/add-instance-settings`)
+
+Same slug across repos for cross-platform features.
+
+## Commits
+
+**Format**: `<category>: [Tag] <description>`
+
+**Categories**: feature, bug, chore, docs, refactor, test
+
+**Tags** (square brackets, optional): `[CI]` `[Core]` `[API]` `[Docs]`
+
+- In this repo, **do not use `[iOS]`** — it's implicit.
+- Use tags only when helpful; omit for small, obvious changes.
+
+**Examples:**
+- `chore: [CI] add iOS CI pipeline`
+- `feature: add instance list screen`
+- `bug: fix crash on search`
+
+## Polyrepo Commits
+
+When changes affect multiple repos, commit in each affected repo separately. See mono `git-workflow.mdc` for full guidance.
+
+Do not push unless explicitly asked. Local commits only.
+
+## PR
+
+- Fill template (description, type, checklist)
+- Link related PRs in other repos
+- Squash merge after review
