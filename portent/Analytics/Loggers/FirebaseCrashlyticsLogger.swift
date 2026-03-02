@@ -30,8 +30,16 @@ struct FirebaseCrashlyticsLogger: LoggingService {
 
     private struct AnalyticsError: Error {
         let code: String
-        let context: ErrorContext
-        var localizedDescription: String { "\(code) | \(context.screen.screenName) | \(context.operation)" }
+        let screenName: String
+        let operation: String
+
+        init(code: String, context: ErrorContext) {
+            self.code = code
+            self.screenName = context.screen.rawValue
+            self.operation = context.operation
+        }
+
+        var localizedDescription: String { "\(code) | \(screenName) | \(operation)" }
     }
 }
 #else

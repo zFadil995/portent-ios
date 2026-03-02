@@ -22,7 +22,8 @@ struct portentApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            // TODO(analytics): configure LoggingManager here once analytics module is wired
+            AppNavigation()
         }
     }
 }
