@@ -1,0 +1,11 @@
+---
+description: Keychain storage and App Transport Security rules
+alwaysApply: false
+---
+
+# Security
+
+- Keychain for API keys, base URLs; kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+- No iCloud sync for server credentials
+- ATS: NSAllowsLocalNetworking for self-hosted; per-domain exceptions
+- Never embed secrets in source; never log credentials

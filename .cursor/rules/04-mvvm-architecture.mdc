@@ -1,0 +1,12 @@
+---
+description: iOS MVVM architecture rules with @Observable
+alwaysApply: false
+---
+
+# MVVM Architecture
+
+- ViewModel: @Observable @MainActor final class; state properties, action methods
+- Service protocol in domain; implementation in data
+- Constructor injection; @Environment for cross-cutting
+- Errors: AppError enum; map at data boundary; surface in ViewModel error state
+- SwiftUI .alert for error presentation

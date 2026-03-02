@@ -1,0 +1,21 @@
+---
+description: iOS project overview and stack
+alwaysApply: true
+---
+
+# Portent iOS
+
+Bundle ID: `com.notitial.portent`. Swift 6, SwiftUI, MVVM, @Observable, URLSession. Targets iOS + macOS.
+
+## Feature Structure
+
+```
+Features/<Name>/
+  Data/       — Service impl, DTOs
+  Domain/     — Service protocol, UseCase (optional)
+  Presentation/ — ViewModel, View, State
+```
+
+## Mono Repo
+
+Platform code lives here; shared docs in `portent/docs/`, `portent/core/`. See `docs/agents/agent-ios.md`.

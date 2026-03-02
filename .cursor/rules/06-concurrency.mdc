@@ -1,0 +1,13 @@
+---
+description: Swift concurrency patterns and data race safety
+globs: "**/*.swift"
+alwaysApply: false
+---
+
+# Concurrency
+
+- async/await; Task for structured concurrency
+- @MainActor for UI; nonisolated for services that run off main
+- Task.checkCancellation() in long loops
+- Avoid Task.detached; avoid MainActor.run when possible
+- Sendable for types crossing actor boundaries

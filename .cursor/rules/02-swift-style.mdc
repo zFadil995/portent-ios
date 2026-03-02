@@ -1,0 +1,14 @@
+---
+description: Swift coding style and idioms
+globs: "**/*.swift"
+alwaysApply: false
+---
+
+# Swift Style
+
+- No force unwrap (`!`); use optional binding, `guard let`
+- Prefer struct over class for value types
+- Enum with associated values for state/result
+- Naming: ViewModels `{Screen}ViewModel`, Services `{Entity}Service`, DTOs `{Entity}Dto`
+- Swift 6 concurrency: @MainActor for UI, Sendable where needed
+- No "I" prefix on protocols

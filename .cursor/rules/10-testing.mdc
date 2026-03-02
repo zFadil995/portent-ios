@@ -1,0 +1,13 @@
+---
+description: Swift Testing conventions and patterns
+globs: "**/*Tests.swift", "**/*Test.swift"
+alwaysApply: false
+---
+
+# Testing
+
+- Swift Testing: @Test, @Suite, #expect, #require
+- XCTest/XCUITest for UI tests
+- Protocol-based fakes; no mocking frameworks
+- Test naming: featureName_scenario_expectedResult
+- @MainActor when testing @Observable ViewModels

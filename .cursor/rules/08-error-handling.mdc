@@ -1,0 +1,12 @@
+---
+description: Error handling hierarchy and patterns
+alwaysApply: false
+---
+
+# Error Handling
+
+- AppError: .networkError, .httpError(code:), .decodingError, .authError, .unknown
+- ErrorToAppErrorMapper at data boundary
+- ViewModel: error: AppError?; clearError() for dismissal
+- SwiftUI .alert(isPresented:presenting:) bound to error
+- Retryable: NetworkError, 5xx, DecodingError; Fatal: AuthError, 4xx

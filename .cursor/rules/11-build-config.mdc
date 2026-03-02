@@ -1,0 +1,12 @@
+---
+description: Xcode build configuration, xcconfig, and version management
+globs: "**/*.xcconfig", "**/project.pbxproj"
+alwaysApply: false
+---
+
+# Build Config
+
+- xcconfig for Debug/Release; optional Dev/Prod
+- MARKETING_VERSION, CURRENT_PROJECT_VERSION from version.json via sync-version.sh
+- Schemes choose configurations
+- macOS: [sdk=macosx] conditionals where needed

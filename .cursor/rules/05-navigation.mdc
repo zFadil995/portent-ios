@@ -1,0 +1,12 @@
+---
+description: NavigationStack and TabView navigation conventions
+alwaysApply: false
+---
+
+# Navigation
+
+- NavigationStack + NavigationPath; .navigationDestination(for:) for type-safe routing
+- TabView as root; per-tab NavigationStack
+- Sheets: .sheet, .fullScreenCover
+- macOS: NavigationSplitView for sidebar on larger screens
+- Deep links: onOpenURL

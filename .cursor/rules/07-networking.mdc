@@ -1,0 +1,13 @@
+---
+description: URLSession networking and API client rules
+alwaysApply: false
+---
+
+# Networking
+
+- URLSession async/await; no third-party HTTP in v1
+- Generic APIClient: request<T: Decodable>(_ endpoint) async throws -> T
+- Endpoint enum/struct for type-safe paths
+- Per-instance base URL and API key injection
+- Map URLError, HTTP status, DecodingError to AppError
+- Self-signed certs: URLSessionDelegate for server trust
