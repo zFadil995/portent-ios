@@ -17,7 +17,7 @@
                BlueprintIdentifier = "9D6B471C2F55D9E500BE7DDD"
                BuildableName = "Portent.app"
                BlueprintName = "Portent"
-               ReferencedContainer = "container:portent.xcodeproj">
+               ReferencedContainer = "container:Portent.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "9D6B47332F55D9E600BE7DDD"
                BuildableName = "PortentTests.xctest"
                BlueprintName = "PortentTests"
-               ReferencedContainer = "container:portent.xcodeproj">
+               ReferencedContainer = "container:Portent.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,7 +50,7 @@
                BlueprintIdentifier = "9D6B47332F55D9E600BE7DDD"
                BuildableName = "PortentTests.xctest"
                BlueprintName = "PortentTests"
-               ReferencedContainer = "container:portent.xcodeproj">
+               ReferencedContainer = "container:Portent.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -72,7 +72,7 @@
             BlueprintIdentifier = "9D6B471C2F55D9E500BE7DDD"
             BuildableName = "Portent.app"
             BlueprintName = "Portent"
-            ReferencedContainer = "container:portent.xcodeproj">
+            ReferencedContainer = "container:Portent.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -89,7 +89,7 @@
             BlueprintIdentifier = "9D6B471C2F55D9E500BE7DDD"
             BuildableName = "Portent.app"
             BlueprintName = "Portent"
-            ReferencedContainer = "container:portent.xcodeproj">
+            ReferencedContainer = "container:Portent.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

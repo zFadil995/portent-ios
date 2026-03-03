@@ -4,7 +4,7 @@
 //
 
 import Foundation
-@testable import portent
+@testable import Portent
 
 final class FakeCredentialStore: CredentialStore {
     private(set) var instances: [ServiceInstance] = []

@@ -4,7 +4,7 @@
 //
 
 import XCTest
-@testable import portent
+@testable import Portent
 
 final class PiiSanitizerTests: XCTestCase {
 
