@@ -38,70 +38,70 @@ final class ServiceInstanceStorage: SecureStorage {
     }
 
     func getBaseUrl(id: UUID) -> String {
-        read(key: "instance_\(id.uuidString)_baseUrl", default: "")
+        read(key: "instance_\(id.uuidString.lowercased())_baseUrl", default: "")
     }
 
     func setBaseUrl(id: UUID, value: String) {
-        write(key: "instance_\(id.uuidString)_baseUrl", value: value)
+        write(key: "instance_\(id.uuidString.lowercased())_baseUrl", value: value)
     }
 
     func getApiKey(id: UUID) -> String {
-        read(key: "instance_\(id.uuidString)_apiKey", default: "")
+        read(key: "instance_\(id.uuidString.lowercased())_apiKey", default: "")
     }
 
     func setApiKey(id: UUID, value: String) {
-        write(key: "instance_\(id.uuidString)_apiKey", value: value)
+        write(key: "instance_\(id.uuidString.lowercased())_apiKey", value: value)
     }
 
     func getType(id: UUID) -> String {
-        read(key: "instance_\(id.uuidString)_type", default: "")
+        read(key: "instance_\(id.uuidString.lowercased())_type", default: "")
     }
 
     func setType(id: UUID, value: ServiceType) {
-        write(key: "instance_\(id.uuidString)_type", value: value.rawValue)
+        write(key: "instance_\(id.uuidString.lowercased())_type", value: value.rawValue)
     }
 
     func getName(id: UUID) -> String {
-        read(key: "instance_\(id.uuidString)_name", default: "")
+        read(key: "instance_\(id.uuidString.lowercased())_name", default: "")
     }
 
     func setName(id: UUID, value: String) {
-        write(key: "instance_\(id.uuidString)_name", value: value)
+        write(key: "instance_\(id.uuidString.lowercased())_name", value: value)
     }
 
     func getIsDefault(id: UUID) -> Bool {
-        readBool(key: "instance_\(id.uuidString)_isDefault", default: false)
+        readBool(key: "instance_\(id.uuidString.lowercased())_isDefault", default: false)
     }
 
     func setIsDefault(id: UUID, value: Bool) {
-        writeBool(key: "instance_\(id.uuidString)_isDefault", value: value)
+        writeBool(key: "instance_\(id.uuidString.lowercased())_isDefault", value: value)
     }
 
     func getIgnoreSslErrors(id: UUID) -> Bool {
-        readBool(key: "instance_\(id.uuidString)_ignoreSslErrors", default: false)
+        readBool(key: "instance_\(id.uuidString.lowercased())_ignoreSslErrors", default: false)
     }
 
     func setIgnoreSslErrors(id: UUID, value: Bool) {
-        writeBool(key: "instance_\(id.uuidString)_ignoreSslErrors", value: value)
+        writeBool(key: "instance_\(id.uuidString.lowercased())_ignoreSslErrors", value: value)
     }
 
     func getIsSearchable(id: UUID) -> Bool {
-        readBool(key: "instance_\(id.uuidString)_isSearchable", default: true)
+        readBool(key: "instance_\(id.uuidString.lowercased())_isSearchable", default: true)
     }
 
     func setIsSearchable(id: UUID, value: Bool) {
-        writeBool(key: "instance_\(id.uuidString)_isSearchable", value: value)
+        writeBool(key: "instance_\(id.uuidString.lowercased())_isSearchable", value: value)
     }
 
     func removeInstance(id: UUID) {
         let keys = [
-            "instance_\(id.uuidString)_baseUrl",
-            "instance_\(id.uuidString)_apiKey",
-            "instance_\(id.uuidString)_type",
-            "instance_\(id.uuidString)_name",
-            "instance_\(id.uuidString)_isDefault",
-            "instance_\(id.uuidString)_ignoreSslErrors",
-            "instance_\(id.uuidString)_isSearchable"
+            "instance_\(id.uuidString.lowercased())_baseUrl",
+            "instance_\(id.uuidString.lowercased())_apiKey",
+            "instance_\(id.uuidString.lowercased())_type",
+            "instance_\(id.uuidString.lowercased())_name",
+            "instance_\(id.uuidString.lowercased())_isDefault",
+            "instance_\(id.uuidString.lowercased())_ignoreSslErrors",
+            "instance_\(id.uuidString.lowercased())_isSearchable"
         ]
         for key in keys {
             remove(key: key)

@@ -3,7 +3,7 @@
 //  portent
 //
 //  Single entry point for all Keychain access. Uses kSecClassGenericPassword
-//  with kSecAttrAccessibleAfterFirstUnlock (no iCloud sync).
+//  with kSecAttrAccessibleWhenUnlocked (no iCloud sync).
 //
 
 import Foundation
@@ -38,7 +38,7 @@ final class SecureStore: SecureStoreProtocol {
             ]
             let attributes: [String: Any] = [
                 kSecValueData as String: data,
-                kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock
+                kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked
             ]
 
             var status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
@@ -46,7 +46,7 @@ final class SecureStore: SecureStoreProtocol {
             if status == errSecItemNotFound {
                 var addQuery = query
                 addQuery[kSecValueData as String] = data
-                addQuery[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlock
+                addQuery[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
                 status = SecItemAdd(addQuery as CFDictionary, nil)
             }
 

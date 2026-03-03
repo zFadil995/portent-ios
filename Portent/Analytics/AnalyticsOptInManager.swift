@@ -5,6 +5,10 @@
 
 import Foundation
 
+#if canImport(FirebaseAnalytics)
+import FirebaseAnalytics
+#endif
+
 final class AnalyticsOptInManager {
     static let shared = AnalyticsOptInManager()
 
@@ -16,6 +20,9 @@ final class AnalyticsOptInManager {
     func setOptIn(_ value: Bool) {
         let wasOptedIn = isOptedIn
         isOptedIn = value
+        #if canImport(FirebaseAnalytics)
+        Analytics.setAnalyticsCollectionEnabled(value)
+        #endif
         configureLoggingManager()
         if value && !wasOptedIn {
             let formatter = ISO8601DateFormatter()
@@ -39,6 +46,10 @@ final class AnalyticsOptInManager {
     }
 
     private init() {
+        #if canImport(FirebaseAnalytics)
+        // Sync Firebase collection state with stored opt-in preference (portentApp disables at startup first).
+        Analytics.setAnalyticsCollectionEnabled(isOptedIn)
+        #endif
         configureLoggingManager()
     }
 }

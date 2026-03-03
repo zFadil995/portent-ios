@@ -22,6 +22,10 @@ final class KeychainCredentialStore: CredentialStore {
         var ids = storage.instanceIds
         ids.insert(instance.id.uuidString)
         storage.instanceIds = ids
+
+        let instances = try await getInstances()
+        let secrets = Set(instances.flatMap { [$0.apiKey, $0.baseUrl] }.filter { !$0.isEmpty })
+        LoggingManager.shared.updateSecrets(secrets)
     }
 
     func getInstances() async throws -> [ServiceInstance] {
@@ -57,9 +61,14 @@ final class KeychainCredentialStore: CredentialStore {
         var ids = storage.instanceIds
         ids.remove(id.uuidString)
         storage.instanceIds = ids
+
+        let instances = try await getInstances()
+        let secrets = Set(instances.flatMap { [$0.apiKey, $0.baseUrl] }.filter { !$0.isEmpty })
+        LoggingManager.shared.updateSecrets(secrets)
     }
 
     func updateInstance(_ instance: ServiceInstance) async throws {
         try await saveInstance(instance)
+        // saveInstance already calls updateSecrets
     }
 }
