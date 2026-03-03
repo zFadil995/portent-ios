@@ -2,6 +2,9 @@ import Foundation
 
 /// Generic API client protocol.
 /// Each service conforms to this for its specific endpoint set.
+///
+/// When implementing `request`, use `NetworkErrorMapper` to map URLError, HTTP status codes,
+/// and DecodingError to AppError so raw errors do not leak to the domain layer.
 protocol APIClient {
     var baseURL: URL { get }
     var session: URLSession { get }

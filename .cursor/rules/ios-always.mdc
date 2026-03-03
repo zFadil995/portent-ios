@@ -1,34 +1,24 @@
 ---
-description: iOS project overview and stack
+description: iOS platform rules — always applied when working in apps/ios/
 alwaysApply: true
 ---
 
-# Portent iOS
+# iOS Platform Rules
 
-Bundle ID: `com.notitial.portent`. Swift 6, SwiftUI, MVVM, @Observable, URLSession. **Minimum:** iOS 18. **visionOS:** Not supported. **macOS:** Catalyst only (not day-one).
+See `docs/agents/agent-ios.md` for full agent definition. This rule applies when working in `apps/ios/`.
 
-## Navigation
+## Stack
 
-- Root: Adaptive TabView (bottom tabs on iPhone, sidebar on iPad)
-- Per-tab: NavigationStack + NavigationDestination
+Swift 6, SwiftUI, MVVM, @Observable, URLSession, Codable. Targets iOS 26+ and macOS Catalyst.
 
-## Tabs (4)
+## Conventions
 
-Dashboard | Calendar | Services | Search
+- Use `FeatureView` / `FeatureViewContents` pattern per `.cursor/rules/ui/agent-ios.mdc`
+- Use `ViewState<T>` (or `UiState<T>`) for screen state: Loading, Success(T), Error, Refreshing(T)
+- Domain layer has no SwiftUI/UIKit imports
+- Never log secrets, tokens, or PII
 
-## State
+## References
 
-Sealed UiState: Loading | Success | Error | Refreshing(staleData). Refreshing for pull-to-refresh. @Observable for ViewModel observation.
-
-## Feature Structure
-
-```
-Features/<Name>/
-  Data/       — Service impl, DTOs
-  Domain/     — Service protocol, UseCase (optional)
-  Presentation/ — ViewModel, View, State
-```
-
-## Mono Repo
-
-Platform code lives here; shared docs in `portent/docs/`, `portent/core/`. See `docs/agents/agent-ios.md`.
+- `docs/architecture.md` — Layer rules
+- `core/cross-platform-contract.mdc` — Domain models (workspace root)

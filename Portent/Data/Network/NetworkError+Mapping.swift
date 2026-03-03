@@ -1,5 +1,7 @@
 import Foundation
 
+// TODO: Wire in APIClient/Repository when API layer is implemented. Raw errors will leak until then.
+
 /// Maps URLSession errors and HTTP responses to AppError.
 enum NetworkErrorMapper {
     static func map(_ error: URLError) -> AppError {

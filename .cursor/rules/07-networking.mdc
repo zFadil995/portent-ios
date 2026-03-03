@@ -1,0 +1,23 @@
+---
+description: iOS networking rules for API integrations
+alwaysApply: false
+---
+
+# iOS Networking
+
+Platform-specific networking for `apps/ios/`. See `docs/api-integrations.md` for API overview.
+
+## Stack
+
+URLSession, async/await, Codable. APIClient factory with base URL and API key per instance.
+
+## Conventions
+
+- Map all API errors (HTTP 4xx/5xx, network failure, timeout, serialization) to `AppError` at the data layer
+- Use `CodingKeys` only when JSON keys differ from Swift property names
+- Per-instance base URL and API key; no shared global client
+
+## References
+
+- `core/api/` — Endpoint specs (Radarr, Sonarr, Sabnzbd)
+- `docs/architecture.md` — Error hierarchy
