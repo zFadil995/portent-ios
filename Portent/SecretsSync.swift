@@ -4,7 +4,7 @@ import Foundation
 /// Call on app startup (after loading instances) and whenever instances are added, edited, or deleted.
 /// Secrets = apiKey and baseUrl per instance (per docs/analytics.md).
 ///
-/// TODO: When add/edit instance flows are implemented, call syncSecretsToLoggingManager after saving.
+/// TODO: Wire on addInstance/updateInstance when CRUD flows exist. Call syncSecretsToLoggingManager after save.
 func syncSecretsToLoggingManager() {
     let storage = ServiceInstanceStorage.shared
     let manager = LoggingManager.shared
