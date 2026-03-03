@@ -1,5 +1,8 @@
 import Foundation
 
+// TODO: When implementing `request`, wire NetworkErrorMapper for URLError, HTTP status codes, and DecodingError.
+// Raw errors must not leak to domain/UI. See docs/api-integrations.md (Error Mapping).
+
 /// Generic API client protocol.
 /// Each service conforms to this for its specific endpoint set.
 ///

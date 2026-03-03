@@ -1,24 +1,11 @@
 ---
-description: Swift style and conventions for iOS
+description: Swift style conventions for iOS app
 alwaysApply: false
 ---
 
 # Swift Style
 
-Swift coding conventions for `apps/ios/`. Stub — expand as needed.
-
-## Activation
-
-When editing Swift files in `apps/ios/`.
-
-## Conventions
-
-- Follow Swift API Design Guidelines
-- Use Swift 6 concurrency (async/await, Sendable where appropriate)
-- Prefer value types; use classes only when reference semantics needed
-- Use `@Observable` for ViewModels per agent-ios.mdc
-
-## References
-
-- Root `.cursor/rules/` for shared rules (commenting, api-models, etc.)
-- `docs/architecture.md` for layer rules
+- Follow Swift 6 and Swift API Design Guidelines.
+- Prefer `@Observable` over `ObservableObject` for ViewModels.
+- Use explicit types where clarity helps; infer elsewhere.
+- See `.cursor/rules/platform/ios-always.mdc` and root rules for full conventions.

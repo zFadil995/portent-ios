@@ -34,6 +34,8 @@ final class PiiSanitizerIntegrationTests: XCTestCase {
     }
 
     override func tearDown() {
+        // Reset LoggingManager.shared so tests are order-independent; singleton state
+        // must not leak between tests (knownSecrets, services).
         LoggingManager.shared.configure(services: [])
         LoggingManager.shared.updateSecrets(Set<String>())
         spy = nil

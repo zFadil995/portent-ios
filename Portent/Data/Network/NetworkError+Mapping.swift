@@ -1,6 +1,8 @@
 import Foundation
 
-// TODO: Wire in APIClient/Repository when API layer is implemented. Raw errors will leak until then.
+// TODO: Wire NetworkErrorMapper in APIClient.request() when API layer is implemented.
+// Checklist: (1) catch URLError → map(_:); (2) validate HTTPURLResponse.statusCode → map(statusCode:);
+// (3) catch DecodingError → map(_:). Raw errors must not leak to UI. See docs/api-integrations.md.
 
 /// Maps URLSession errors and HTTP responses to AppError.
 enum NetworkErrorMapper {

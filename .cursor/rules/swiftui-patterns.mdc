@@ -1,14 +1,11 @@
 ---
-description: SwiftUI patterns and anti-patterns
-globs: "**/*.swift"
+description: SwiftUI patterns for iOS app
 alwaysApply: false
 ---
 
 # SwiftUI Patterns
 
-- View decomposition: extract subviews when body exceeds ~30 lines
-- @ViewBuilder for conditional content; avoid AnyView
-- .task {} for async on appear; .refreshable {} for pull-to-refresh
-- #Preview with realistic mock data
-- No state in View; ViewModel holds state
-- Avoid GeometryReader unless measuring
+- Use `FeatureView` / `FeatureViewContents` per `.cursor/rules/ui/agent-ios.mdc`.
+- Put `#Preview` on `FeatureViewContents` only, not on `FeatureView`.
+- Use `ViewState<T>` for screen state: Loading, Success(T), Error, Refreshing(T).
+- See root rules for full view structure.

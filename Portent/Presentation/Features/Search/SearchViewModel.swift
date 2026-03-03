@@ -14,6 +14,8 @@ final class SearchViewModel {
 
     func refresh() {
         // Stub: will load searchable instances and results when API is wired.
+        // TODO: When API is wired, transition to .refreshing(staleData: state.dataOrNil ?? SearchState())
+        // before the async call, then to .success(newData) on completion. Contract: Refreshing shows stale data.
         state = .success(SearchState())
     }
 
