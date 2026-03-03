@@ -1,10 +1,7 @@
-//
-//  PiiSanitizer.swift
-//  portent
-//
-
 import Foundation
 
+/// Redacts known secrets from strings and parameter dictionaries before logging or analytics.
+/// Use with knownSecrets from SecureStore key names and other sensitive identifiers.
 struct PiiSanitizer {
     nonisolated static func sanitize(_ input: String, knownSecrets: Set<String>) -> String {
         var result = input

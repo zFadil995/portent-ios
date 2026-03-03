@@ -1,8 +1,3 @@
-//
-//  LoggingService.swift
-//  portent
-//
-
 import Foundation
 
 /// Protocol for logging services in the composite pattern.

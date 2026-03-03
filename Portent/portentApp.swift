@@ -1,10 +1,3 @@
-//
-//  portentApp.swift
-//  portent
-//
-//  Created by Fadil Žilić on 2. 3. 2026..
-//
-
 import SwiftUI
 
 #if canImport(FirebaseCore)
@@ -17,6 +10,7 @@ import FirebaseAnalytics
 import FirebaseCrashlytics
 #endif
 
+/// Main app entry point. Configures Firebase (Analytics/Crashlytics) gated by opt-in; both disabled until user consents.
 @main
 struct PortentApp: App {
     init() {
@@ -36,7 +30,6 @@ struct PortentApp: App {
 
     var body: some Scene {
         WindowGroup {
-            // TODO(analytics): configure LoggingManager here once analytics module is wired
             AppNavigation()
         }
     }

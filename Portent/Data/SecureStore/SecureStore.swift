@@ -1,15 +1,7 @@
-//
-//  SecureStore.swift
-//  portent
-//
-//  Single entry point for all Keychain access. Uses kSecClassGenericPassword
-//  with kSecAttrAccessibleWhenUnlocked (no iCloud sync).
-//
-
 import Foundation
 import Security
 
-/// Protocol for Keychain-like storage. Enables injection of FakeSecureStore in tests.
+/// Keychain-like storage protocol. Enables injection of FakeSecureStore in tests.
 protocol SecureStoreProtocol: AnyObject {
     func write(key: String, value: String) throws
     func read(key: String) throws -> String?
@@ -18,6 +10,8 @@ protocol SecureStoreProtocol: AnyObject {
     func clearAll(prefix: String) throws
 }
 
+/// Single entry point for Keychain access. Uses kSecClassGenericPassword with
+/// kSecAttrAccessibleWhenUnlocked (no iCloud sync).
 final class SecureStore: SecureStoreProtocol {
     static let shared = SecureStore()
 

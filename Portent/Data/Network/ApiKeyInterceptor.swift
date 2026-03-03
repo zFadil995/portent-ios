@@ -1,8 +1,3 @@
-//
-//  ApiKeyInterceptor.swift
-//  portent
-//
-
 import Foundation
 
 /// Helper that decorates a URLRequest with API key and JSON headers.

@@ -1,12 +1,6 @@
-//
-//  KeychainCredentialStore.swift
-//  portent
-//
-//  CredentialStore implementation backed by ServiceInstanceStorage (Keychain).
-//
-
 import Foundation
 
+/// Keychain-backed CredentialStore. Persists ServiceInstance credentials via ServiceInstanceStorage.
 final class KeychainCredentialStore: CredentialStore {
     private let storage = ServiceInstanceStorage.shared
 

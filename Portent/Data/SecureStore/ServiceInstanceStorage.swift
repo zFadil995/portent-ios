@@ -1,14 +1,7 @@
-//
-//  ServiceInstanceStorage.swift
-//  portent
-//
-//  Domain-scoped storage for service instance credentials.
-//  Stores per-instance: base URL, API key, SSL toggle, default flag, type, name, searchable.
-//  Mirrors Android ServiceInstanceStorage key structure.
-//
-
 import Foundation
 
+/// Domain-scoped storage for service instance credentials. Key structure mirrors Android
+/// ServiceInstanceStorage (per-instance: baseUrl, apiKey, type, name, isDefault, ignoreSslErrors, isSearchable).
 final class ServiceInstanceStorage: SecureStorage {
     static let shared = ServiceInstanceStorage()
 

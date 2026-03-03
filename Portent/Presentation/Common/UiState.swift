@@ -1,12 +1,8 @@
-//
-//  UiState.swift
-//  portent
-//
-
 import Foundation
 
 /// Sealed UI state used across all ViewModels.
 /// Refreshing carries stale data visible while a refresh is in progress.
+/// Must match Android UiState contract (loading, success, error, refreshing).
 enum UiState<T> {
     case loading
     case success(T)

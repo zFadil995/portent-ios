@@ -1,0 +1,72 @@
+---
+description: Swift commenting conventions — doc comments, cross-platform contracts, API behavior
+alwaysApply: false
+globs: ["apps/ios/**/*.swift"]
+---
+
+# Swift Commenting
+
+Inherits philosophy from `.cursor/rules/core/commenting.mdc`: explain WHY not WHAT, comment only non-trivial code, remove noise, keep comments in sync.
+
+## Doc Comments (`///`)
+
+Use `///` doc comments for:
+
+- Public structs/classes/enums that are part of **domain**, **networking**, **storage**, **analytics**, or **UI contracts**
+- Non-trivial methods on those types
+
+## Avoid
+
+- ❌ Weird Xcode-generated headers (author, date)
+- ❌ Region banners except when useful — `// MARK: - Foo` is allowed but keep minimal
+- ❌ Comments that restate what the code already clearly says
+
+## When to Add Comments
+
+- **Cross-platform contracts**: `ServiceInstance`, `ServiceType`, `UiState`, `AppError` — document invariants that must match Android
+- **External API behavior**: Plex, qBittorrent, Transmission, SAB, Radarr, Sonarr, Firebase — quirks, nullability, error shapes
+- **Security logic**: Keychain accessibility choices, `PiiSanitizer` usage, SecureStore key format — when non-obvious
+
+## When to Delete Comments
+
+- If they restate what the code already clearly says
+- If they describe behavior that is no longer true
+
+---
+
+## Examples
+
+### (a) Good: ViewModel or UseCase with Doc Comment
+
+```swift
+/// Fetches series from Sonarr for the configured instance.
+/// Returns `.config(.noInstanceConfigured)` when no default instance exists.
+/// SAB queue can return `null` for empty; we treat as `[]`.
+struct GetSeriesUseCase {
+    private let service: SonarrService
+
+    /// Loads series; on API error, returns cached data if available (pull-to-refresh pattern).
+    func execute() async -> UiState<[Series]> {
+        // ...
+    }
+}
+```
+
+### (b) Bad Comment → Fixed
+
+**Bad** (restates the obvious):
+
+```swift
+/// Gets the count of items in the list
+func itemCount() -> Int {
+    items.count
+}
+```
+
+**Fixed** (delete the comment — the code is self-explanatory):
+
+```swift
+func itemCount() -> Int {
+    items.count
+}
+```

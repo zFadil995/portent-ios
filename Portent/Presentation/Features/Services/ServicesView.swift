@@ -1,8 +1,3 @@
-//
-//  ServicesView.swift
-//  portent
-//
-
 import SwiftUI
 
 struct ServicesView: View {

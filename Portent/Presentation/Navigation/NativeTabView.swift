@@ -1,8 +1,3 @@
-//
-//  NativeTabView.swift
-//  portent
-//
-
 import SwiftUI
 
 struct NativeTabView: View {

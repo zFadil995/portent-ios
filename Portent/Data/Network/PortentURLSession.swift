@@ -1,13 +1,7 @@
-//
-//  PortentURLSession.swift
-//  portent
-//
-
 import Foundation
 
 /// Factory for URLSession configured per ServiceInstance.
 enum PortentURLSession {
-    /// Creates a URLSession for the given instance.
     /// Uses trust-all delegate when instance has ignoreSslErrors enabled.
     static func session(for instance: ServiceInstance) -> URLSession {
         let config = URLSessionConfiguration.default

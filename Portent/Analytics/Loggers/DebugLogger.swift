@@ -1,8 +1,3 @@
-//
-//  DebugLogger.swift
-//  portent
-//
-
 import Foundation
 
 #if DEBUG

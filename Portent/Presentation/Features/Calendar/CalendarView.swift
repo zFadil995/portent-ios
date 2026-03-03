@@ -1,8 +1,3 @@
-//
-//  CalendarView.swift
-//  portent
-//
-
 import SwiftUI
 
 struct CalendarView: View {

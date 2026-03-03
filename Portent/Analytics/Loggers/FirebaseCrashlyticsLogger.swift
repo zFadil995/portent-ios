@@ -1,13 +1,9 @@
-//
-//  FirebaseCrashlyticsLogger.swift
-//  portent
-//
-
 import Foundation
 
 #if canImport(FirebaseCrashlytics)
 import FirebaseCrashlytics
 
+/// LoggingService implementation using Firebase Crashlytics. Records errors and non-fatal crashes.
 struct FirebaseCrashlyticsLogger: LoggingService {
     func logEvent(_ event: AnalyticsEvent) {}
     func logScreen(_ screen: Screen) {}

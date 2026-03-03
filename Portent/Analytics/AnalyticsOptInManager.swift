@@ -1,8 +1,3 @@
-//
-//  AnalyticsOptInManager.swift
-//  portent
-//
-
 import Foundation
 
 #if canImport(FirebaseAnalytics)
@@ -12,6 +7,8 @@ import FirebaseAnalytics
 import FirebaseCrashlytics
 #endif
 
+/// Manages analytics and Crashlytics opt-in. Gates Firebase collection by user preference;
+/// Crashlytics must stay in sync with Analytics for privacy compliance.
 final class AnalyticsOptInManager {
     static let shared = AnalyticsOptInManager()
 

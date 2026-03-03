@@ -1,10 +1,6 @@
-//
-//  AnalyticsEvent.swift
-//  portent
-//
-
 import Foundation
 
+/// Search scope for analytics events. Values must match Android for cross-platform reporting.
 enum SearchScope {
     case global
     case sonarr
@@ -19,6 +15,8 @@ enum SearchScope {
     }
 }
 
+/// Analytics event types sent to Firebase. Event names and parameter keys must match Android.
+/// Use `sanitized(secrets:)` before sending to strip PII.
 enum AnalyticsEvent {
     case serviceAdded(type: ServiceType, isDefault: Bool)
     case serviceEdited(type: ServiceType)
@@ -89,6 +87,7 @@ enum AnalyticsEvent {
         }
     }
 
+    /// Redacts PII from event parameters using PiiSanitizer before sending to analytics.
     func sanitized(secrets: Set<String>) -> AnalyticsEvent {
         let sanitizedParams = PiiSanitizer.sanitizeParameters(parameters, knownSecrets: secrets)
         if sanitizedParams == parameters { return self }

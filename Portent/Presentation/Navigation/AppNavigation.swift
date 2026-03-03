@@ -1,8 +1,3 @@
-//
-//  AppNavigation.swift
-//  portent
-//
-
 import SwiftUI
 
 struct AppNavigation: View {

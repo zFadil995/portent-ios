@@ -1,8 +1,3 @@
-//
-//  DashboardView.swift
-//  portent
-//
-
 import SwiftUI
 
 struct DashboardView: View {

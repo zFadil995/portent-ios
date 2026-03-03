@@ -1,8 +1,3 @@
-//
-//  SearchView.swift
-//  portent
-//
-
 import SwiftUI
 
 struct SearchView: View {

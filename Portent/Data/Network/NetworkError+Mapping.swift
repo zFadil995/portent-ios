@@ -1,13 +1,7 @@
-//
-//  NetworkError+Mapping.swift
-//  portent
-//
-
 import Foundation
 
 /// Maps URLSession errors and HTTP responses to AppError.
 enum NetworkErrorMapper {
-    /// Maps URLError to AppError.Network.
     static func map(_ error: URLError) -> AppError {
         switch error.code {
         case .notConnectedToInternet, .networkConnectionLost:
@@ -23,7 +17,6 @@ enum NetworkErrorMapper {
         }
     }
 
-    /// Maps HTTP status code to AppError.ApiError.
     static func map(statusCode: Int) -> AppError {
         switch statusCode {
         case 401:
@@ -39,7 +32,6 @@ enum NetworkErrorMapper {
         }
     }
 
-    /// Maps DecodingError to AppError.
     static func map(_ error: DecodingError) -> AppError {
         .network(.invalidResponse(statusCode: 0))
     }

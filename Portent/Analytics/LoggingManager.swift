@@ -1,11 +1,8 @@
-//
-//  LoggingManager.swift
-//  portent
-//
-
 import Foundation
 import Observation
 
+/// Central analytics dispatcher. Forwards events to configured LoggingService implementations;
+/// sanitizes PII and secrets before forwarding. Network/API errors are logged as non-fatal.
 @Observable
 final class LoggingManager {
     static let shared = LoggingManager()

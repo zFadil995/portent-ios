@@ -1,4 +1,4 @@
-// DEPRECATED: Use UiState for all new screens.
+/// Legacy loading-state enum. Use `UiState` for all new screens.
 enum ViewState<T> {
     case idle
     case loading

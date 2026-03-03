@@ -1,8 +1,3 @@
-//
-//  AppTheme.swift
-//  portent
-//
-
 import SwiftUI
 
 /// Minimal theme modifier. v1: follows system color scheme.

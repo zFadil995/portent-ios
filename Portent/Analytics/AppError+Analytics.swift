@@ -1,10 +1,6 @@
-//
-//  AppError+Analytics.swift
-//  portent
-//
-
 import Foundation
 
+/// Maps AppError to stable analytics codes. Must match Android for cross-platform error reporting.
 extension AppError {
     var analyticsCode: String {
         switch self {

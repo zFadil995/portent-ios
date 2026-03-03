@@ -1,10 +1,6 @@
-//
-//  UserProperty.swift
-//  portent
-//
-
 import Foundation
 
+/// Analytics user properties. Key/value format must match Android for cross-platform reporting.
 enum UserProperty {
     case serviceInstanceCount(count: Int)
     case activeServiceTypes(types: [ServiceType])

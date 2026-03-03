@@ -1,8 +1,3 @@
-//
-//  ServiceInstance.swift
-//  portent
-//
-
 import Foundation
 
 /// Domain model for a configured service instance.

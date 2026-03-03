@@ -1,10 +1,6 @@
-//
-//  TabDestination.swift
-//  portent
-//
-
 import SwiftUI
 
+/// Tab definitions for the four main tabs. Must match Android tab order and labels.
 enum TabDestination: String, CaseIterable, Identifiable {
     case dashboard
     case calendar

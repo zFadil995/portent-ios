@@ -1,8 +1,3 @@
-//
-//  CredentialStore.swift
-//  portent
-//
-
 import Foundation
 
 /// Abstraction over secure credential storage.

@@ -1,8 +1,3 @@
-//
-//  AppError.swift
-//  portent
-//
-
 import Foundation
 
 /// Domain error hierarchy.

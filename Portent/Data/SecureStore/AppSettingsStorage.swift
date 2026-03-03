@@ -1,13 +1,6 @@
-//
-//  AppSettingsStorage.swift
-//  portent
-//
-//  Domain-scoped storage for app-level preferences.
-//  Stores: theme, default service, onboarding complete, analytics opt-in.
-//
-
 import Foundation
 
+/// Domain-scoped storage for app-level preferences (theme, default service, onboarding, analytics).
 final class AppSettingsStorage: SecureStorage {
     static let shared = AppSettingsStorage()
 

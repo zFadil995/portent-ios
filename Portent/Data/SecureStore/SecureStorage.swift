@@ -1,13 +1,7 @@
-//
-//  SecureStorage.swift
-//  portent
-//
-//  Abstract base for domain-scoped storage. Keys are prefixed as "{domain}__{key}"
-//  to match Android convention. All operations delegate to SecureStore.
-//
-
 import Foundation
 
+/// Abstract base for domain-scoped storage. Keys use "{domain}__{key}" prefix to match
+/// Android convention. All operations delegate to SecureStore.
 open class SecureStorage {
     let domain: String
     private let store: SecureStoreProtocol

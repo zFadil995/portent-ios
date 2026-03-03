@@ -1,8 +1,3 @@
-//
-//  ServiceType.swift
-//  portent
-//
-
 import Foundation
 
 /// Service type enum for Portent.

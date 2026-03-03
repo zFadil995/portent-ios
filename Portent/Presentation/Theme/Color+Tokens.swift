@@ -1,8 +1,3 @@
-//
-//  Color+Tokens.swift
-//  portent
-//
-
 import SwiftUI
 #if canImport(UIKit)
 import UIKit
@@ -57,8 +52,6 @@ extension Color {
             opacity: Double(alpha) / 255
         )
     }
-
-    // TODO(design): Replace with final brand colors
 
     static let portentPrimary = Color(
         light: Color(hex: "#1C1B4B"),

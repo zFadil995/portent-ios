@@ -1,10 +1,6 @@
-//
-//  Screen.swift
-//  portent
-//
-
 import Foundation
 
+/// Analytics screen identifiers. Raw values must match Android for cross-platform reporting.
 enum Screen: String {
     case dashboard
     case calendar

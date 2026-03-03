@@ -1,8 +1,3 @@
-//
-//  SecureStoreError.swift
-//  portent
-//
-
 import Foundation
 
 /// Errors thrown by SecureStore Keychain operations.

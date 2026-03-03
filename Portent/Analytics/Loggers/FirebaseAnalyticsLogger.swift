@@ -1,13 +1,9 @@
-//
-//  FirebaseAnalyticsLogger.swift
-//  portent
-//
-
 import Foundation
 
 #if canImport(FirebaseAnalytics)
 import FirebaseAnalytics
 
+/// LoggingService implementation using Firebase Analytics. Non-fatal errors are delegated to Crashlytics.
 struct FirebaseAnalyticsLogger: LoggingService {
     func logEvent(_ event: AnalyticsEvent) {
         FirebaseAnalytics.Analytics.logEvent(event.name, parameters: event.parameters)
