@@ -40,10 +40,15 @@ jobs:
       - name: Run SwiftLint
         run: |
           set -euo pipefail
+          if [ -n "${RUNNER_HOST_WORK_ROOT:-}" ]; then
+            WORKSPACE_FOR_DOCKER="${RUNNER_HOST_WORK_ROOT}${GITHUB_WORKSPACE#/tmp/runner}"
+          else
+            WORKSPACE_FOR_DOCKER="$GITHUB_WORKSPACE"
+          fi
           for attempt in 1 2; do
             echo "Lint attempt ${attempt}/2"
             if docker run --rm --pull never \
-              -v "${{ github.workspace }}:/src:ro" \
+              -v "${WORKSPACE_FOR_DOCKER}:/src:ro" \
               -w /src \
               "$SWIFTLINT_IMAGE" \
               lint --reporter github-actions-logging; then
