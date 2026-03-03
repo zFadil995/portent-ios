@@ -7,12 +7,10 @@ import Foundation
 
 final class AnalyticsOptInManager {
     static let shared = AnalyticsOptInManager()
-    private let defaults = UserDefaults.standard
-    private let key = "portent.analytics_opt_in"
 
     var isOptedIn: Bool {
-        get { defaults.bool(forKey: key) }
-        set { defaults.set(newValue, forKey: key) }
+        get { AppSettingsStorage.shared.analyticsOptIn }
+        set { AppSettingsStorage.shared.analyticsOptIn = newValue }
     }
 
     func setOptIn(_ value: Bool) {
