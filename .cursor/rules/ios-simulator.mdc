@@ -1,0 +1,16 @@
+---
+description: Preferred iOS simulator for running tests and builds
+alwaysApply: false
+globs: ["**/*.swift", "**/*.xcodeproj/**", "**/*.xcworkspace/**"]
+---
+
+# iOS Simulator Preference
+
+## Simulator
+
+Use **iPhone Air** as the default simulator for running tests and builds.
+
+- **Test:** `cd apps/ios && xcodebuild test -scheme portent -configuration Debug -destination 'platform=iOS Simulator,name=iPhone Air,OS=latest'`
+- **Build:** `cd apps/ios && xcodebuild build -scheme portent -configuration Debug -sdk iphonesimulator`
+
+When specifying a destination, prefer `name=iPhone Air` over other devices (e.g. iPhone 16, iPhone 17) for consistency across runs.
