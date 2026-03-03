@@ -10,6 +10,7 @@
 import XCTest
 @testable import Portent
 
+@MainActor
 final class PiiSanitizerIntegrationTests: XCTestCase {
 
     /// Spy that captures events passed to logEvent for assertion.
