@@ -1,6 +1,6 @@
 # Bump iOS Version
 
-Bump CFBundleVersion and CFBundleShortVersionString in xcconfig and the version manifest.
+Bump CFBundleVersion and CFBundleShortVersionString in the version manifest and Xcode project.
 
 1. Read version.json from mono root (version, ios_build)
 2. Increment per argument: major, minor, patch

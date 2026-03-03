@@ -40,9 +40,10 @@ jobs:
 
       - name: Run unit tests
         run: |
+          # Canonical simulator — must match .cursor/commands/test-ios.md
           env CODE_SIGNING_ALLOWED=NO xcodebuild test \
             -scheme portent \
-            -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.2' \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
             -resultBundlePath TestResults \
             | xcpretty
 
@@ -66,9 +67,10 @@ jobs:
 
       - name: Build
         run: |
+          # Canonical simulator — must match .cursor/commands/test-ios.md
           env CODE_SIGNING_ALLOWED=NO xcodebuild build \
             -scheme portent \
-            -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.2' \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
             -configuration Debug \
             | xcpretty
 
