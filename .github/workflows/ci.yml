@@ -12,14 +12,18 @@ concurrency:
 
 jobs:
   swiftlint:
-    runs-on: macos-15
+    runs-on: [self-hosted, truenas]
     steps:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
       - name: Install SwiftLint
-        run: brew install swiftlint
+        run: |
+          curl -sSfL https://github.com/realm/SwiftLint/releases/download/0.54.0/swiftlint_linux.zip -o /tmp/swiftlint.zip
+          sudo unzip -o /tmp/swiftlint.zip -d /opt/swiftlint
+          sudo cp "$(find /opt/swiftlint -name swiftlint -type f | head -1)" /usr/local/bin/swiftlint
+          sudo chmod +x /usr/local/bin/swiftlint
 
       - name: Run SwiftLint
         run: swiftlint lint --reporter github-actions-logging
@@ -101,7 +105,7 @@ jobs:
             | xcpretty
 
   version-check:
-    runs-on: macos-15
+    runs-on: [self-hosted, truenas]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -116,7 +120,7 @@ jobs:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
       - name: Install jq
-        run: brew install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
 
       - name: Parse version.json
         id: version
