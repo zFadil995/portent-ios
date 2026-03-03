@@ -15,6 +15,7 @@ xcuserdata/
 # Swift Package Manager
 .build/
 GoogleService-Info.plist
+GoogleService-Info.plist.template
 .swiftpm/
 
 # App packaging
