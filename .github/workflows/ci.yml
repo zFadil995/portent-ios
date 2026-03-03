@@ -45,7 +45,7 @@ jobs:
           path: |
             ~/Library/Caches/org.swift.swiftpm
             ~/.swiftpm
-          key: ${{ runner.os }}-spm-${{ hashFiles('portent.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          key: ${{ runner.os }}-spm-${{ hashFiles('Portent.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
 
       - name: Install xcpretty
         run: gem install xcpretty
@@ -121,8 +121,8 @@ jobs:
       - name: Parse project.pbxproj
         id: xcode
         run: |
-          MARKETING_VERSION=$(grep -m1 "MARKETING_VERSION" portent.xcodeproj/project.pbxproj | sed 's/.*= *\(.*\);/\1/' | tr -d ' ')
-          CURRENT_PROJECT_VERSION=$(grep -m1 "CURRENT_PROJECT_VERSION" portent.xcodeproj/project.pbxproj | sed 's/.*= *\(.*\);/\1/' | tr -d ' ')
+          MARKETING_VERSION=$(grep -m1 "MARKETING_VERSION" Portent.xcodeproj/project.pbxproj | sed 's/.*= *\(.*\);/\1/' | tr -d ' ')
+          CURRENT_PROJECT_VERSION=$(grep -m1 "CURRENT_PROJECT_VERSION" Portent.xcodeproj/project.pbxproj | sed 's/.*= *\(.*\);/\1/' | tr -d ' ')
           echo "marketing_version=$MARKETING_VERSION" >> $GITHUB_OUTPUT
           echo "current_project_version=$CURRENT_PROJECT_VERSION" >> $GITHUB_OUTPUT
 
