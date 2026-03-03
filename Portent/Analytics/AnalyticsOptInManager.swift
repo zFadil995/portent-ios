@@ -8,6 +8,9 @@ import Foundation
 #if canImport(FirebaseAnalytics)
 import FirebaseAnalytics
 #endif
+#if canImport(FirebaseCrashlytics)
+import FirebaseCrashlytics
+#endif
 
 final class AnalyticsOptInManager {
     static let shared = AnalyticsOptInManager()
@@ -22,6 +25,10 @@ final class AnalyticsOptInManager {
         isOptedIn = value
         #if canImport(FirebaseAnalytics)
         Analytics.setAnalyticsCollectionEnabled(value)
+        #endif
+        #if canImport(FirebaseCrashlytics)
+        // Crashlytics must be gated same as Analytics — privacy requirement
+        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(value)
         #endif
         configureLoggingManager()
         if value && !wasOptedIn {
@@ -49,6 +56,10 @@ final class AnalyticsOptInManager {
         #if canImport(FirebaseAnalytics)
         // Sync Firebase collection state with stored opt-in preference (portentApp disables at startup first).
         Analytics.setAnalyticsCollectionEnabled(isOptedIn)
+        #endif
+        #if canImport(FirebaseCrashlytics)
+        // Crashlytics must be gated same as Analytics — privacy requirement
+        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(isOptedIn)
         #endif
         configureLoggingManager()
     }

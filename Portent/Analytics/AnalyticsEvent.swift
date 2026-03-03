@@ -90,6 +90,79 @@ enum AnalyticsEvent {
     }
 
     func sanitized(secrets: Set<String>) -> AnalyticsEvent {
-        self
+        let sanitizedParams = PiiSanitizer.sanitizeParameters(parameters, knownSecrets: secrets)
+        if sanitizedParams == parameters { return self }
+
+        switch self {
+        case .serviceAdded(let type, let isDefault):
+            let st = sanitizedParams["service_type"] ?? type.rawValue.lowercased()
+            let id = sanitizedParams["is_default"] ?? String(isDefault)
+            return .serviceAdded(
+                type: ServiceType(rawValue: st.uppercased()) ?? type,
+                isDefault: Bool(id) ?? isDefault
+            )
+        case .serviceEdited(let type):
+            let st = sanitizedParams["service_type"] ?? type.rawValue.lowercased()
+            return .serviceEdited(type: ServiceType(rawValue: st.uppercased()) ?? type)
+        case .serviceDeleted(let type):
+            let st = sanitizedParams["service_type"] ?? type.rawValue.lowercased()
+            return .serviceDeleted(type: ServiceType(rawValue: st.uppercased()) ?? type)
+        case .serviceConnectionTested(let type, let success):
+            let st = sanitizedParams["service_type"] ?? type.rawValue.lowercased()
+            let succ = sanitizedParams["success"] ?? String(success)
+            return .serviceConnectionTested(
+                type: ServiceType(rawValue: st.uppercased()) ?? type,
+                success: Bool(succ) ?? success
+            )
+        case .screenViewed(let screen):
+            let sn = sanitizedParams["screen"] ?? screen.screenName
+            return .screenViewed(screen: Screen(rawValue: sn) ?? screen)
+        case .searchPerformed(let scope, let resultCount):
+            let sc = sanitizedParams["scope"] ?? scope.stringValue
+            let rc = sanitizedParams["result_count"] ?? String(resultCount)
+            return .searchPerformed(
+                scope: SearchScope.from(stringValue: sc) ?? scope,
+                resultCount: Int(rc) ?? resultCount
+            )
+        case .searchResultSelected(let scope, let isInLibrary):
+            let sc = sanitizedParams["scope"] ?? scope.stringValue
+            let iil = sanitizedParams["is_in_library"] ?? String(isInLibrary)
+            return .searchResultSelected(
+                scope: SearchScope.from(stringValue: sc) ?? scope,
+                isInLibrary: Bool(iil) ?? isInLibrary
+            )
+        case .episodeSearchTriggered(let serviceType):
+            let st = sanitizedParams["service_type"] ?? serviceType.rawValue.lowercased()
+            return .episodeSearchTriggered(serviceType: ServiceType(rawValue: st.uppercased()) ?? serviceType)
+        case .episodeFileDeleted(let serviceType):
+            let st = sanitizedParams["service_type"] ?? serviceType.rawValue.lowercased()
+            return .episodeFileDeleted(serviceType: ServiceType(rawValue: st.uppercased()) ?? serviceType)
+        case .episodeFileDetailsViewed(let serviceType):
+            let st = sanitizedParams["service_type"] ?? serviceType.rawValue.lowercased()
+            return .episodeFileDetailsViewed(serviceType: ServiceType(rawValue: st.uppercased()) ?? serviceType)
+        case .onboardingCompleted(let analyticsOptedIn):
+            let aoi = sanitizedParams["analytics_opted_in"] ?? String(analyticsOptedIn)
+            return .onboardingCompleted(analyticsOptedIn: Bool(aoi) ?? analyticsOptedIn)
+        case .analyticsOptInChanged(let optedIn):
+            let oi = sanitizedParams["opted_in"] ?? String(optedIn)
+            return .analyticsOptInChanged(optedIn: Bool(oi) ?? optedIn)
+        case .errorOccurred(let errorCode, let screen):
+            let ec = sanitizedParams["error_code"] ?? errorCode
+            let sn = sanitizedParams["screen"] ?? screen.screenName
+            return .errorOccurred(errorCode: ec, screen: Screen(rawValue: sn) ?? screen)
+        case .appForegrounded, .appBackgrounded:
+            return self
+        }
+    }
+}
+
+private extension SearchScope {
+    static func from(stringValue: String) -> SearchScope? {
+        switch stringValue {
+        case "global": return .global
+        case "sonarr": return .sonarr
+        case "radarr": return .radarr
+        default: return nil
+        }
     }
 }

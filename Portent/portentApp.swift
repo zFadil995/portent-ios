@@ -13,12 +13,19 @@ import FirebaseCore
 #if canImport(FirebaseAnalytics)
 import FirebaseAnalytics
 #endif
+#if canImport(FirebaseCrashlytics)
+import FirebaseCrashlytics
+#endif
 
 @main
 struct PortentApp: App {
     init() {
         #if canImport(FirebaseCore)
         FirebaseApp.configure()
+        #endif
+        #if canImport(FirebaseCrashlytics)
+        // Crashlytics must be gated same as Analytics — privacy requirement
+        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(false)
         #endif
         #if canImport(FirebaseAnalytics)
         // Disable analytics until user opts in; AnalyticsOptInManager enables on opt-in.

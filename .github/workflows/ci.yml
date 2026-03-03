@@ -25,8 +25,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create Firebase stub for tests
-        run: cp portent/GoogleService-Info.plist.template portent/GoogleService-Info.plist
+      # Secret must be added to GitHub repo settings as GOOGLE_SERVICE_INFO_PLIST
+      - name: Create GoogleService-Info.plist from secret
+        env:
+          GOOGLE_SERVICE_INFO_PLIST: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}
+        run: |
+          echo "$GOOGLE_SERVICE_INFO_PLIST" > Portent/GoogleService-Info.plist
 
       - uses: actions/cache@v4
         with:
@@ -59,8 +63,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create Firebase stub for build
-        run: cp portent/GoogleService-Info.plist.template portent/GoogleService-Info.plist
+      # Secret must be added to GitHub repo settings as GOOGLE_SERVICE_INFO_PLIST
+      - name: Create GoogleService-Info.plist from secret
+        env:
+          GOOGLE_SERVICE_INFO_PLIST: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}
+        run: |
+          echo "$GOOGLE_SERVICE_INFO_PLIST" > Portent/GoogleService-Info.plist
 
       - name: Install xcpretty
         run: gem install xcpretty

@@ -1,5 +1,4 @@
-// DEPRECATED: Use UiState. This file will be removed once all screens migrate.
-// Use ViewState for all new screens going forward. Existing screens use direct @Observable properties — do not migrate those.
+// DEPRECATED: Use UiState for all new screens.
 enum ViewState<T> {
     case idle
     case loading

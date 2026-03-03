@@ -106,5 +106,9 @@ final class ServiceInstanceStorage: SecureStorage {
         for key in keys {
             remove(key: key)
         }
+        // Must update instanceIds to prevent orphaned IDs after deletion
+        var ids = instanceIds
+        ids.remove(id.uuidString.lowercased())
+        instanceIds = ids
     }
 }
