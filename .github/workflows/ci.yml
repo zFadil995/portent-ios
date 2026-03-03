@@ -13,18 +13,45 @@ concurrency:
 jobs:
   swiftlint:
     runs-on: [self-hosted, truenas]
+    timeout-minutes: 15
+    env:
+      SWIFTLINT_IMAGE: ghcr.io/realm/swiftlint:0.63.2
     steps:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
+      - name: Verify Docker daemon
+        run: docker info >/dev/null
+
+      - name: Pull SwiftLint image with retry
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            echo "Pull attempt ${attempt}/3"
+            if timeout 300 docker pull "$SWIFTLINT_IMAGE"; then
+              exit 0
+            fi
+            [ "$attempt" -lt 3 ] && sleep $((attempt * 15))
+          done
+          echo "::error::Failed to pull $SWIFTLINT_IMAGE after 3 attempts"
+          exit 1
+
       - name: Run SwiftLint
         run: |
-          docker run --rm \
-            -v "${{ github.workspace }}:/src" \
-            -w /src \
-            ghcr.io/realm/swiftlint:0.63.2 \
-            swiftlint lint --reporter github-actions-logging
+          set -euo pipefail
+          for attempt in 1 2; do
+            echo "Lint attempt ${attempt}/2"
+            if docker run --rm --pull never \
+              -v "${{ github.workspace }}:/src:ro" \
+              -w /src \
+              "$SWIFTLINT_IMAGE" \
+              swiftlint lint --reporter github-actions-logging; then
+              exit 0
+            fi
+            [ "$attempt" -lt 2 ] && sleep 10
+          done
+          exit 1
         continue-on-error: false
 
   unit-test:
