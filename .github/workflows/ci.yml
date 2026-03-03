@@ -46,7 +46,7 @@ jobs:
               -v "${{ github.workspace }}:/src:ro" \
               -w /src \
               "$SWIFTLINT_IMAGE" \
-              swiftlint lint --reporter github-actions-logging; then
+              lint --reporter github-actions-logging; then
               exit 0
             fi
             [ "$attempt" -lt 2 ] && sleep 10
