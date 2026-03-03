@@ -1,8 +1,3 @@
-//
-//  PiiSanitizerTests.swift
-//  portentTests
-//
-
 import XCTest
 @testable import Portent
 

@@ -1,14 +1,24 @@
 ---
-description: Swift coding style and idioms
-globs: "**/*.swift"
+description: Swift style and conventions for iOS
 alwaysApply: false
 ---
 
 # Swift Style
 
-- No force unwrap (`!`); use optional binding, `guard let`
-- Prefer struct over class for value types
-- Enum with associated values for state/result
-- Naming: ViewModels `{Screen}ViewModel`, Services `{Entity}Service`, DTOs `{Entity}Dto`
-- Swift 6 concurrency: @MainActor for UI, Sendable where needed
-- No "I" prefix on protocols
+Swift coding conventions for `apps/ios/`. Stub — expand as needed.
+
+## Activation
+
+When editing Swift files in `apps/ios/`.
+
+## Conventions
+
+- Follow Swift API Design Guidelines
+- Use Swift 6 concurrency (async/await, Sendable where appropriate)
+- Prefer value types; use classes only when reference semantics needed
+- Use `@Observable` for ViewModels per agent-ios.mdc
+
+## References
+
+- Root `.cursor/rules/` for shared rules (commenting, api-models, etc.)
+- `docs/architecture.md` for layer rules

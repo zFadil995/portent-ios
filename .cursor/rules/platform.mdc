@@ -1,0 +1,20 @@
+---
+description: iOS platform rules — references root rules; platform-specific rules live here
+alwaysApply: false
+---
+
+# iOS Platform Rules
+
+Platform-specific rules for `apps/ios/`. Shared rules live in the repo root.
+
+## References
+
+- **Root rules:** `../../../../.cursor/rules/` (core, general, ui, development, testing)
+- **Platform rules:** This directory (`apps/ios/.cursor/rules/`)
+- **Architecture:** `docs/architecture.md`
+- **Cross-platform contract:** `.cursor/rules/core/cross-platform-contract.mdc`
+
+## Platform-Specific Rules in This Directory
+
+- `swift-style.mdc` — Swift style and conventions
+- See `agent-ios.mdc` in root `.cursor/rules/ui/` for agent protocols

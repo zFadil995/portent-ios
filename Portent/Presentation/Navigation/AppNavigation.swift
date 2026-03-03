@@ -5,3 +5,7 @@ struct AppNavigation: View {
         NativeTabView()
     }
 }
+
+#Preview {
+    AppNavigation()
+}

@@ -5,6 +5,9 @@ import Foundation
 final class ServiceInstanceStorage: SecureStorage {
     static let shared = ServiceInstanceStorage()
 
+    /// Invoked when instances are added, edited, or deleted. Used to sync secrets to LoggingManager.
+    var onInstancesChanged: (() -> Void)?
+
     private convenience init() {
         self.init(store: SecureStore.shared)
     }
@@ -19,10 +22,10 @@ final class ServiceInstanceStorage: SecureStorage {
             guard let data = raw.data(using: .utf8),
                   let arr = try? JSONDecoder().decode([String].self, from: data)
             else { return [] }
-            return Set(arr)
+            return Set(arr.map { $0.lowercased() })
         }
         set {
-            let arr = Array(newValue)
+            let arr = Array(newValue.map { $0.lowercased() })
             guard let data = try? JSONEncoder().encode(arr),
                   let raw = String(data: data, encoding: .utf8)
             else { return }
@@ -103,5 +106,6 @@ final class ServiceInstanceStorage: SecureStorage {
         var ids = instanceIds
         ids.remove(id.uuidString.lowercased())
         instanceIds = ids
+        onInstancesChanged?()
     }
 }

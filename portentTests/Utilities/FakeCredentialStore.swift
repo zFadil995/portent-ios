@@ -1,10 +1,5 @@
-//
-//  FakeCredentialStore.swift
-//  portentTests
-//
-// TODO: Add tests using FakeCredentialStore when CredentialStore
-// has more logic to test (e.g., key construction, error mapping).
-// Do not delete — required as a test double for upcoming API tests.
+// Test double for CredentialStore. Kept for upcoming API tests; add tests when
+// CredentialStore gains key construction, error mapping, or other logic to exercise.
 
 import Foundation
 @testable import Portent

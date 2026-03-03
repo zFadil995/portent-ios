@@ -27,6 +27,9 @@ struct PortentApp: App {
         Analytics.setAnalyticsCollectionEnabled(false)
         #endif
         _ = AnalyticsOptInManager.shared
+        // Sync PII secrets to LoggingManager for sanitization (per docs/analytics.md)
+        syncSecretsToLoggingManager()
+        ServiceInstanceStorage.shared.onInstancesChanged = { syncSecretsToLoggingManager() }
     }
 
     var body: some Scene {

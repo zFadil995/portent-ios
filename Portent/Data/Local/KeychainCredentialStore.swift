@@ -14,7 +14,7 @@ final class KeychainCredentialStore: CredentialStore {
         storage.setIsSearchable(id: instance.id, value: instance.isSearchable)
 
         var ids = storage.instanceIds
-        ids.insert(instance.id.uuidString)
+        ids.insert(instance.id.uuidString.lowercased())
         storage.instanceIds = ids
 
         let instances = try await getInstances()
@@ -53,7 +53,7 @@ final class KeychainCredentialStore: CredentialStore {
     func deleteInstance(id: UUID) async throws {
         storage.removeInstance(id: id)
         var ids = storage.instanceIds
-        ids.remove(id.uuidString)
+        ids.remove(id.uuidString.lowercased())
         storage.instanceIds = ids
 
         let instances = try await getInstances()

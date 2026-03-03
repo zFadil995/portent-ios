@@ -1,10 +1,8 @@
+// Keychain integration tests. Requires real Keychain (device or simulator).
+// Can be excluded from fast unit test runs if needed.
 //
-//  SecureStoreKeychainIntegrationTests.swift
-//  portentTests
-//
-//  Keychain integration tests. Requires real Keychain (device or simulator).
-//  Can be excluded from fast unit test runs if needed.
-//
+// Flaky risk: uses real Keychain. May fail under parallel execution or simulator state.
+// Consider test isolation (e.g. unique key prefix per run) in a follow-up.
 
 import XCTest
 @testable import Portent

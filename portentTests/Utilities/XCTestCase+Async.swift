@@ -1,8 +1,3 @@
-//
-//  XCTestCase+Async.swift
-//  portentTests
-//
-
 import XCTest
 
 extension XCTestCase {

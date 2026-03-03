@@ -2,7 +2,7 @@ import Foundation
 
 /// Service type enum for Portent.
 /// V1: RADARR, SONARR, SABNZBD. Additional types deferred to v2/v3.
-enum ServiceType: String, CaseIterable {
+enum ServiceType: String, CaseIterable, Codable {
     case radarr = "RADARR"
     case sonarr = "SONARR"
     case sabnzbd = "SABNZBD"

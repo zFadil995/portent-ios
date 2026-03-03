@@ -1,9 +1,4 @@
-//
-//  FakeSecureStore.swift
-//  portentTests
-//
-//  In-memory dictionary-backed fake for unit tests. No Keychain access.
-//
+// In-memory dictionary-backed fake for unit tests. No Keychain access.
 
 import Foundation
 @testable import Portent

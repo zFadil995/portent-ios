@@ -25,3 +25,7 @@ struct NativeTabView: View {
         .appTheme()
     }
 }
+
+#Preview {
+    NativeTabView()
+}

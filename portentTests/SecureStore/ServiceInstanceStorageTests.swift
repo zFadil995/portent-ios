@@ -1,8 +1,3 @@
-//
-//  ServiceInstanceStorageTests.swift
-//  portentTests
-//
-
 import XCTest
 @testable import Portent
 
