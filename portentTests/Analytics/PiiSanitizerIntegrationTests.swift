@@ -1,9 +1,6 @@
 // Integration tests for updateSecrets → LoggingManager → sanitize chain.
 // Test 3 will FAIL if AnalyticsEvent.sanitized(secrets:) still returns self
 // without parameter sanitization (see C-02).
-//
-// Flaky risk: uses LoggingManager singleton. No isolation between tests; shared state
-// may cause order-dependent failures. Consider test isolation in a follow-up.
 
 import XCTest
 @testable import Portent
@@ -37,6 +34,8 @@ final class PiiSanitizerIntegrationTests: XCTestCase {
     }
 
     override func tearDown() {
+        LoggingManager.shared.configure(services: [])
+        LoggingManager.shared.updateSecrets(Set<String>())
         spy = nil
         super.tearDown()
     }
