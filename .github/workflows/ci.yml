@@ -11,6 +11,8 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
       - name: Install SwiftLint
         run: brew install swiftlint
@@ -24,6 +26,8 @@ jobs:
     needs: swiftlint
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
       # Secret must be added to GitHub repo settings as GOOGLE_SERVICE_INFO_PLIST
       - name: Create GoogleService-Info.plist from secret
@@ -62,6 +66,8 @@ jobs:
     needs: unit-test
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
       # Secret must be added to GitHub repo settings as GOOGLE_SERVICE_INFO_PLIST
       - name: Create GoogleService-Info.plist from secret
@@ -86,6 +92,8 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
       - name: Checkout mono repo for version.json
         uses: actions/checkout@v4
@@ -93,7 +101,7 @@ jobs:
           repository: zFadil995/portent
           path: mono-repo
           ref: main
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
       - name: Install jq
         run: brew install jq
