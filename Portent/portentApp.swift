@@ -10,7 +10,8 @@ import FirebaseAnalytics
 import FirebaseCrashlytics
 #endif
 
-/// Main app entry point. Configures Firebase (Analytics/Crashlytics) gated by opt-in; both disabled until user consents.
+/// Main app entry point. Configures Firebase (Analytics/Crashlytics) gated by opt-in;
+/// both disabled until user consents.
 @main
 struct PortentApp: App {
     init() {

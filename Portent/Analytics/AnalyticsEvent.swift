@@ -93,65 +93,123 @@ enum AnalyticsEvent {
         if sanitizedParams == parameters { return self }
 
         switch self {
-        case .serviceAdded(let type, let isDefault):
-            let st = sanitizedParams["service_type"] ?? type.rawValue.lowercased()
-            let id = sanitizedParams["is_default"] ?? String(isDefault)
-            return .serviceAdded(
-                type: ServiceType(rawValue: st.uppercased()) ?? type,
-                isDefault: Bool(id) ?? isDefault
-            )
-        case .serviceEdited(let type):
-            let st = sanitizedParams["service_type"] ?? type.rawValue.lowercased()
-            return .serviceEdited(type: ServiceType(rawValue: st.uppercased()) ?? type)
-        case .serviceDeleted(let type):
-            let st = sanitizedParams["service_type"] ?? type.rawValue.lowercased()
-            return .serviceDeleted(type: ServiceType(rawValue: st.uppercased()) ?? type)
-        case .serviceConnectionTested(let type, let success):
-            let st = sanitizedParams["service_type"] ?? type.rawValue.lowercased()
-            let succ = sanitizedParams["success"] ?? String(success)
-            return .serviceConnectionTested(
-                type: ServiceType(rawValue: st.uppercased()) ?? type,
-                success: Bool(succ) ?? success
-            )
-        case .screenViewed(let screen):
-            let sn = sanitizedParams["screen"] ?? screen.screenName
-            return .screenViewed(screen: Screen(rawValue: sn) ?? screen)
-        case .searchPerformed(let scope, let resultCount):
-            let sc = sanitizedParams["scope"] ?? scope.stringValue
-            let rc = sanitizedParams["result_count"] ?? String(resultCount)
-            return .searchPerformed(
-                scope: SearchScope.from(stringValue: sc) ?? scope,
-                resultCount: Int(rc) ?? resultCount
-            )
-        case .searchResultSelected(let scope, let isInLibrary):
-            let sc = sanitizedParams["scope"] ?? scope.stringValue
-            let iil = sanitizedParams["is_in_library"] ?? String(isInLibrary)
-            return .searchResultSelected(
-                scope: SearchScope.from(stringValue: sc) ?? scope,
-                isInLibrary: Bool(iil) ?? isInLibrary
-            )
-        case .episodeSearchTriggered(let serviceType):
-            let st = sanitizedParams["service_type"] ?? serviceType.rawValue.lowercased()
-            return .episodeSearchTriggered(serviceType: ServiceType(rawValue: st.uppercased()) ?? serviceType)
-        case .episodeFileDeleted(let serviceType):
-            let st = sanitizedParams["service_type"] ?? serviceType.rawValue.lowercased()
-            return .episodeFileDeleted(serviceType: ServiceType(rawValue: st.uppercased()) ?? serviceType)
-        case .episodeFileDetailsViewed(let serviceType):
-            let st = sanitizedParams["service_type"] ?? serviceType.rawValue.lowercased()
-            return .episodeFileDetailsViewed(serviceType: ServiceType(rawValue: st.uppercased()) ?? serviceType)
-        case .onboardingCompleted(let analyticsOptedIn):
-            let aoi = sanitizedParams["analytics_opted_in"] ?? String(analyticsOptedIn)
-            return .onboardingCompleted(analyticsOptedIn: Bool(aoi) ?? analyticsOptedIn)
-        case .analyticsOptInChanged(let optedIn):
-            let oi = sanitizedParams["opted_in"] ?? String(optedIn)
-            return .analyticsOptInChanged(optedIn: Bool(oi) ?? optedIn)
-        case .errorOccurred(let errorCode, let screen):
-            let ec = sanitizedParams["error_code"] ?? errorCode
-            let sn = sanitizedParams["screen"] ?? screen.screenName
-            return .errorOccurred(errorCode: ec, screen: Screen(rawValue: sn) ?? screen)
+        case .serviceAdded, .serviceEdited, .serviceDeleted, .serviceConnectionTested,
+             .episodeSearchTriggered, .episodeFileDeleted, .episodeFileDetailsViewed:
+            return Self.reconstructServiceTypeEvent(self, params: sanitizedParams)
+        case .searchPerformed, .searchResultSelected:
+            return Self.reconstructSearchScopeEvent(self, params: sanitizedParams)
+        case .screenViewed, .errorOccurred:
+            return Self.reconstructScreenEvent(self, params: sanitizedParams)
+        case .onboardingCompleted, .analyticsOptInChanged:
+            return Self.reconstructOptInEvent(self, params: sanitizedParams)
         case .appForegrounded, .appBackgrounded:
             return self
         }
+    }
+
+    private static func reconstructServiceTypeEvent(
+        _ event: AnalyticsEvent, params: [String: String]
+    ) -> AnalyticsEvent {
+        switch event {
+        case .serviceAdded(let type, let isDefault):
+            let serviceType = parseServiceType(params, key: "service_type", fallback: type)
+            let isDefaultValue = parseBool(params, key: "is_default", fallback: isDefault)
+            return .serviceAdded(type: serviceType, isDefault: isDefaultValue)
+        case .serviceConnectionTested(let type, let success):
+            let serviceType = parseServiceType(params, key: "service_type", fallback: type)
+            let successValue = parseBool(params, key: "success", fallback: success)
+            return .serviceConnectionTested(type: serviceType, success: successValue)
+        case .serviceEdited(let type):
+            return .serviceEdited(type: parseServiceType(params, key: "service_type", fallback: type))
+        case .serviceDeleted(let type):
+            return .serviceDeleted(type: parseServiceType(params, key: "service_type", fallback: type))
+        case .episodeSearchTriggered(let serviceType):
+            return .episodeSearchTriggered(
+                serviceType: parseServiceType(params, key: "service_type", fallback: serviceType)
+            )
+        case .episodeFileDeleted(let serviceType):
+            return .episodeFileDeleted(
+                serviceType: parseServiceType(params, key: "service_type", fallback: serviceType)
+            )
+        case .episodeFileDetailsViewed(let serviceType):
+            return .episodeFileDetailsViewed(
+                serviceType: parseServiceType(params, key: "service_type", fallback: serviceType)
+            )
+        default:
+            return event
+        }
+    }
+
+    private static func reconstructSearchScopeEvent(
+        _ event: AnalyticsEvent, params: [String: String]
+    ) -> AnalyticsEvent {
+        switch event {
+        case .searchPerformed(let scope, let resultCount):
+            let searchScope = parseSearchScope(params, key: "scope", fallback: scope)
+            let resultCountValue = parseInt(params, key: "result_count", fallback: resultCount)
+            return .searchPerformed(scope: searchScope, resultCount: resultCountValue)
+        case .searchResultSelected(let scope, let isInLibrary):
+            let searchScope = parseSearchScope(params, key: "scope", fallback: scope)
+            let isInLibraryValue = parseBool(params, key: "is_in_library", fallback: isInLibrary)
+            return .searchResultSelected(scope: searchScope, isInLibrary: isInLibraryValue)
+        default:
+            return event
+        }
+    }
+
+    private static func reconstructScreenEvent(
+        _ event: AnalyticsEvent, params: [String: String]
+    ) -> AnalyticsEvent {
+        switch event {
+        case .screenViewed(let screen):
+            let screenName = params["screen"] ?? screen.screenName
+            return .screenViewed(screen: Screen(rawValue: screenName) ?? screen)
+        case .errorOccurred(let errorCode, let screen):
+            let errorCodeValue = params["error_code"] ?? errorCode
+            let screenName = params["screen"] ?? screen.screenName
+            return .errorOccurred(errorCode: errorCodeValue, screen: Screen(rawValue: screenName) ?? screen)
+        default:
+            return event
+        }
+    }
+
+    private static func reconstructOptInEvent(
+        _ event: AnalyticsEvent, params: [String: String]
+    ) -> AnalyticsEvent {
+        switch event {
+        case .onboardingCompleted(let analyticsOptedIn):
+            let value = parseBool(params, key: "analytics_opted_in", fallback: analyticsOptedIn)
+            return .onboardingCompleted(analyticsOptedIn: value)
+        case .analyticsOptInChanged(let optedIn):
+            let value = parseBool(params, key: "opted_in", fallback: optedIn)
+            return .analyticsOptInChanged(optedIn: value)
+        default:
+            return event
+        }
+    }
+
+    private static func parseServiceType(
+        _ params: [String: String], key: String, fallback: ServiceType
+    ) -> ServiceType {
+        let raw = params[key] ?? fallback.rawValue.lowercased()
+        return ServiceType(rawValue: raw.uppercased()) ?? fallback
+    }
+
+    private static func parseSearchScope(
+        _ params: [String: String], key: String, fallback: SearchScope
+    ) -> SearchScope {
+        let raw = params[key] ?? fallback.stringValue
+        return SearchScope.from(stringValue: raw) ?? fallback
+    }
+
+    private static func parseBool(_ params: [String: String], key: String, fallback: Bool) -> Bool {
+        let raw = params[key] ?? String(fallback)
+        return Bool(raw) ?? fallback
+    }
+
+    private static func parseInt(_ params: [String: String], key: String, fallback: Int) -> Int {
+        let raw = params[key] ?? String(fallback)
+        return Int(raw) ?? fallback
     }
 }
 

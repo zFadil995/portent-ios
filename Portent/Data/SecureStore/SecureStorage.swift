@@ -21,13 +21,13 @@ open class SecureStorage {
     }
 
     func read(key: String, default defaultValue: String) -> String {
-        let sk = storageKey(for: key)
-        return (try? store.read(key: sk)) ?? defaultValue
+        let secKey = storageKey(for: key)
+        return (try? store.read(key: secKey)) ?? defaultValue
     }
 
     func write(key: String, value: String) {
-        let sk = storageKey(for: key)
-        try? store.write(key: sk, value: value)
+        let secKey = storageKey(for: key)
+        try? store.write(key: secKey, value: value)
     }
 
     func readBool(key: String, default defaultValue: Bool) -> Bool {
@@ -49,8 +49,8 @@ open class SecureStorage {
     }
 
     func remove(key: String) {
-        let sk = storageKey(for: key)
-        try? store.delete(key: sk)
+        let secKey = storageKey(for: key)
+        try? store.delete(key: secKey)
     }
 
     func contains(key: String) -> Bool {
