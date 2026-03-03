@@ -45,6 +45,9 @@ TestResults.xcresult/
 # Mono repo checkout (CI creates this for version-check)
 mono-repo/
 
+# Conversations (temporary files, logs, chat trackers)
+.conversations/
+
 # Editor / OS
 .DS_Store
 *.swp
