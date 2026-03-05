@@ -96,7 +96,7 @@ jobs:
           fi
           echo "$GOOGLE_SERVICE_INFO_PLIST" | base64 -d > Portent/GoogleService-Info.plist
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: |
             ~/Library/Caches/org.swift.swiftpm
@@ -183,7 +183,7 @@ jobs:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
       - name: Cache SPM
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .build
           key: spm-${{ runner.os }}-${{ hashFiles('**/Package.resolved') }}
