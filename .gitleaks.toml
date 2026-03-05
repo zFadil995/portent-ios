@@ -1,0 +1,17 @@
+title = "Portent Gitleaks Config"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Test fakes and fixtures — dummy/placeholder secrets only"
+paths = [
+  '''.*FakeCredentialStore.*''',
+  '''.*FakeSecureStore.*''',
+  '''.*FakeAPIClient.*''',
+  '''.*FakeURLProtocol.*''',
+  '''.*/testing/.*''',
+  '''.*Test\.swift$''',
+  '''.*Test\.kt$''',
+  '''.*Tests\.swift$'''
+]

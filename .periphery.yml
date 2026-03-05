@@ -1,0 +1,9 @@
+project: Portent.xcodeproj
+schemes:
+  - Portent
+targets:
+  - Portent
+format: checkstyle
+quiet: true
+skip_build: false
+clean_build: false
