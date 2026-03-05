@@ -34,7 +34,7 @@ struct SearchViewContents: View {
             ContentUnavailableView(
                 "Error",
                 systemImage: "exclamationmark.triangle",
-                description: Text(String(describing: appError))
+                description: Text(appError.toUserMessage())
             )
         }
     }

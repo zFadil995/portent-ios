@@ -1,7 +1,45 @@
 import SwiftUI
 
+/// Host view for Calendar. Owns ViewModel and passes state to CalendarViewContents.
 struct CalendarView: View {
+    @State private var viewModel = CalendarViewModel()
+
     var body: some View {
+        CalendarViewContents(
+            state: viewModel.state,
+            onRefresh: { viewModel.refresh() }
+        )
+    }
+}
+
+/// Stateless Calendar UI. Receives state and actions; no ViewModel.
+struct CalendarViewContents: View {
+    let state: UiState<CalendarState>
+    let onRefresh: () -> Void
+
+    var body: some View {
+        switch state {
+        case .loading:
+            ProgressView()
+        case .refreshing(let staleData):
+            calendarContent(staleData)
+                .overlay(alignment: .top) {
+                    ProgressView()
+                        .padding(.top, 8)
+                }
+        case .success(let data):
+            calendarContent(data)
+        case .error(let appError):
+            ContentUnavailableView(
+                "Error",
+                systemImage: "exclamationmark.triangle",
+                description: Text(appError.toUserMessage())
+            )
+        }
+    }
+
+    @ViewBuilder
+    private func calendarContent(_ data: CalendarState) -> some View {
         ContentUnavailableView(
             "Calendar",
             systemImage: "calendar",
@@ -11,5 +49,8 @@ struct CalendarView: View {
 }
 
 #Preview {
-    CalendarView()
+    CalendarViewContents(
+        state: .success(CalendarState()),
+        onRefresh: {}
+    )
 }
