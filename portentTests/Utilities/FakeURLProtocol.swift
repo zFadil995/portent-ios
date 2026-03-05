@@ -32,13 +32,18 @@ final class FakeURLProtocol: URLProtocol {
         guard let client = client else { return }
         let provider = Self.responseProvider
         if let (statusCode, data) = provider?(request) {
-            let url = request.url ?? URL(string: "https://fake.test/")!
-            let response = HTTPURLResponse(
-                url: url,
-                statusCode: statusCode,
-                httpVersion: "1.1",
-                headerFields: ["Content-Type": "application/json"]
-            )!
+            guard let url = request.url ?? URL(string: "https://fake.test/"),
+                  let response = HTTPURLResponse(
+                      url: url,
+                      statusCode: statusCode,
+                      httpVersion: "1.1",
+                      headerFields: ["Content-Type": "application/json"]
+                  )
+            else {
+                client.urlProtocol(self, didFailWithError: URLError(.unknown))
+                client.urlProtocolDidFinishLoading(self)
+                return
+            }
             client.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
             client.urlProtocol(self, didLoad: data)
         } else {

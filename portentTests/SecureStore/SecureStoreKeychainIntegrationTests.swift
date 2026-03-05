@@ -12,9 +12,9 @@ final class SecureStoreKeychainIntegrationTests: XCTestCase {
     private var store: SecureStore { SecureStore.shared }
     private let testPrefix = "test_integration_"
 
-    override func tearDown() {
+    override func tearDown() async throws {
         try? store.clearAll(prefix: testPrefix)
-        super.tearDown()
+        try await super.tearDown()
     }
 
     func test_write_read_roundtrip() throws {

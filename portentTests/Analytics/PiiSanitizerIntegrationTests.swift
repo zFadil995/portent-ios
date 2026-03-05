@@ -26,25 +26,26 @@ final class PiiSanitizerIntegrationTests: XCTestCase {
         func endSession() {}
     }
 
-    private var spy: SpyLoggingService!
+    private var spy: SpyLoggingService?
 
-    override func setUp() {
-        super.setUp()
+    override func setUp() async throws {
+        try await super.setUp()
         spy = SpyLoggingService()
     }
 
-    override func tearDown() {
+    override func tearDown() async throws {
         // Reset LoggingManager.shared so tests are order-independent; singleton state
         // must not leak between tests (knownSecrets, services).
         LoggingManager.shared.configure(services: [])
         LoggingManager.shared.updateSecrets(Set<String>())
         spy = nil
-        super.tearDown()
+        try await super.tearDown()
     }
 
     // MARK: - Test 1: updateSecrets then logEvent redacts API key
 
-    func test_updateSecrets_thenLogEvent_redactsApiKey() {
+    func test_updateSecrets_thenLogEvent_redactsApiKey() throws {
+        let spy = try XCTUnwrap(spy)
         let secret = "my-secret-key"
         LoggingManager.shared.updateSecrets([secret])
         LoggingManager.shared.configure(services: [spy])
@@ -65,7 +66,8 @@ final class PiiSanitizerIntegrationTests: XCTestCase {
 
     // MARK: - Test 2: updateSecrets then logEvent redacts base URL
 
-    func test_updateSecrets_thenLogEvent_redactsBaseUrl() {
+    func test_updateSecrets_thenLogEvent_redactsBaseUrl() throws {
+        let spy = try XCTUnwrap(spy)
         let baseUrl = "https://my-server.local"
         LoggingManager.shared.updateSecrets([baseUrl])
         LoggingManager.shared.configure(services: [spy])
@@ -85,7 +87,7 @@ final class PiiSanitizerIntegrationTests: XCTestCase {
 
     // MARK: - Test 3: sanitized(secrets:) redacts parameters
 
-    func test_sanitizedEvent_redactsParameters() {
+    func test_sanitizedEvent_redactsParameters() throws {
         let secret = "the-secret"
         let event = AnalyticsEvent.errorOccurred(errorCode: secret, screen: .dashboard)
 
@@ -103,7 +105,8 @@ final class PiiSanitizerIntegrationTests: XCTestCase {
 
     // MARK: - Test 4: empty secrets does not redact
 
-    func test_emptySecrets_doesNotRedact() {
+    func test_emptySecrets_doesNotRedact() throws {
+        let spy = try XCTUnwrap(spy)
         let value = "my-secret-key"
         LoggingManager.shared.updateSecrets([])
         LoggingManager.shared.configure(services: [spy])
