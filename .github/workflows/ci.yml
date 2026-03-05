@@ -30,6 +30,7 @@ concurrency:
 
 jobs:
   swiftlint:
+    if: github.actor != 'dependabot[bot]'
     runs-on: [self-hosted, truenas]
     timeout-minutes: 15
     env:
@@ -78,6 +79,7 @@ jobs:
         continue-on-error: false
 
   unit-test:
+    if: github.actor != 'dependabot[bot]'
     runs-on: macos-15
     needs: swiftlint
     steps:
@@ -145,6 +147,7 @@ jobs:
             });
 
   build:
+    if: github.actor != 'dependabot[bot]'
     runs-on: macos-15
     needs: unit-test
     steps:
@@ -176,6 +179,7 @@ jobs:
             | xcpretty
 
   periphery:
+    if: github.actor != 'dependabot[bot]'
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v6
@@ -204,6 +208,7 @@ jobs:
           retention-days: 14
 
   version-check:
+    if: github.actor != 'dependabot[bot]'
     runs-on: [self-hosted, truenas]
     steps:
       - uses: actions/checkout@v6
