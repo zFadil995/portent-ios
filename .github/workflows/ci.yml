@@ -35,7 +35,7 @@ jobs:
     env:
       SWIFTLINT_IMAGE: ghcr.io/realm/swiftlint:0.63.2
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
@@ -81,7 +81,7 @@ jobs:
     runs-on: macos-15
     needs: swiftlint
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
@@ -148,7 +148,7 @@ jobs:
     runs-on: macos-15
     needs: unit-test
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
@@ -178,7 +178,7 @@ jobs:
   periphery:
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
@@ -206,12 +206,12 @@ jobs:
   version-check:
     runs-on: [self-hosted, truenas]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
       - name: Checkout mono repo for version.json
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: zFadil995/portent
           path: mono-repo
