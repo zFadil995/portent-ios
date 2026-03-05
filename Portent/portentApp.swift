@@ -29,7 +29,8 @@ struct PortentApp: App {
         _ = AnalyticsOptInManager.shared
         // Sync PII secrets to LoggingManager for sanitization (per docs/analytics.md)
         syncSecretsToLoggingManager()
-        ServiceInstanceStorage.shared.onInstancesChanged = { syncSecretsToLoggingManager() }
+        RadarrSecureStorage.shared.onRadarrChanged = { syncSecretsToLoggingManager() }
+        SonarrSecureStorage.shared.onSonarrChanged = { syncSecretsToLoggingManager() }
     }
 
     var body: some Scene {

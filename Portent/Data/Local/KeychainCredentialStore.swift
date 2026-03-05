@@ -1,21 +1,38 @@
 import Foundation
 
-/// Keychain-backed CredentialStore. Persists ServiceInstance credentials via ServiceInstanceStorage.
+/// Thrown when credential store operations fail (e.g. unsupported service type in v1).
+enum CredentialStoreError: Error {
+    case unsupportedServiceType
+}
+
+/// Keychain-backed CredentialStore. Persists ServiceInstance credentials via RadarrSecureStorage and SonarrSecureStorage.
+/// v1: Exactly one Radarr and one Sonarr.
 final class KeychainCredentialStore: CredentialStore {
-    private let storage = ServiceInstanceStorage.shared
+    private let radarrStorage = RadarrSecureStorage.shared
+    private let sonarrStorage = SonarrSecureStorage.shared
+
+    private static let radarrId = UUID(uuidString: "00000000-0000-0000-0000-000000000001")!
+    private static let sonarrId = UUID(uuidString: "00000000-0000-0000-0000-000000000002")!
 
     func saveInstance(_ instance: ServiceInstance) async throws {
-        storage.setBaseUrl(id: instance.id, value: instance.baseUrl)
-        storage.setApiKey(id: instance.id, value: instance.apiKey)
-        storage.setType(id: instance.id, value: instance.type)
-        storage.setName(id: instance.id, value: instance.name)
-        storage.setIsDefault(id: instance.id, value: instance.isDefault)
-        storage.setIgnoreSslErrors(id: instance.id, value: instance.ignoreSslErrors)
-        storage.setIsSearchable(id: instance.id, value: instance.isSearchable)
-
-        var ids = storage.instanceIds
-        ids.insert(instance.id.uuidString.lowercased())
-        storage.instanceIds = ids
+        switch instance.type {
+        case .radarr:
+            radarrStorage.baseUrl = instance.baseUrl
+            radarrStorage.apiKey = instance.apiKey
+            radarrStorage.name = instance.name
+            radarrStorage.ignoreSslErrors = instance.ignoreSslErrors
+            radarrStorage.isSearchable = instance.isSearchable
+            radarrStorage.onRadarrChanged?()
+        case .sonarr:
+            sonarrStorage.baseUrl = instance.baseUrl
+            sonarrStorage.apiKey = instance.apiKey
+            sonarrStorage.name = instance.name
+            sonarrStorage.ignoreSslErrors = instance.ignoreSslErrors
+            sonarrStorage.isSearchable = instance.isSearchable
+            sonarrStorage.onSonarrChanged?()
+        default:
+            throw CredentialStoreError.unsupportedServiceType
+        }
 
         let instances = try await getInstances()
         let secrets = Set(instances.flatMap { [$0.apiKey, $0.baseUrl] }.filter { !$0.isEmpty })
@@ -23,38 +40,36 @@ final class KeychainCredentialStore: CredentialStore {
     }
 
     func getInstances() async throws -> [ServiceInstance] {
-        let ids = storage.instanceIds.compactMap { UUID(uuidString: $0) }
         var instances: [ServiceInstance] = []
-        for id in ids {
-            if let instance = try await getInstanceById(id) {
-                instances.append(instance)
-            }
+        if radarrStorage.isConfigured {
+            instances.append(buildRadarrInstance())
+        }
+        if sonarrStorage.isConfigured {
+            instances.append(buildSonarrInstance())
         }
         return instances
     }
 
     func getInstanceById(_ id: UUID) async throws -> ServiceInstance? {
-        let typeRaw = storage.getType(id: id)
-        guard !typeRaw.isEmpty else { return nil }
-
-        let type = ServiceType(rawValue: typeRaw) ?? .radarr
-        return ServiceInstance(
-            id: id,
-            type: type,
-            name: storage.getName(id: id),
-            baseUrl: storage.getBaseUrl(id: id),
-            apiKey: storage.getApiKey(id: id),
-            isDefault: storage.getIsDefault(id: id),
-            ignoreSslErrors: storage.getIgnoreSslErrors(id: id),
-            isSearchable: storage.getIsSearchable(id: id)
-        )
+        switch id {
+        case Self.radarrId:
+            return radarrStorage.isConfigured ? buildRadarrInstance() : nil
+        case Self.sonarrId:
+            return sonarrStorage.isConfigured ? buildSonarrInstance() : nil
+        default:
+            return nil
+        }
     }
 
     func deleteInstance(id: UUID) async throws {
-        storage.removeInstance(id: id)
-        var ids = storage.instanceIds
-        ids.remove(id.uuidString.lowercased())
-        storage.instanceIds = ids
+        switch id {
+        case Self.radarrId:
+            radarrStorage.clear()
+        case Self.sonarrId:
+            sonarrStorage.clear()
+        default:
+            break
+        }
 
         let instances = try await getInstances()
         let secrets = Set(instances.flatMap { [$0.apiKey, $0.baseUrl] }.filter { !$0.isEmpty })
@@ -63,6 +78,31 @@ final class KeychainCredentialStore: CredentialStore {
 
     func updateInstance(_ instance: ServiceInstance) async throws {
         try await saveInstance(instance)
-        // saveInstance already calls updateSecrets
+    }
+
+    private func buildRadarrInstance() -> ServiceInstance {
+        ServiceInstance(
+            id: Self.radarrId,
+            type: .radarr,
+            name: radarrStorage.name,
+            baseUrl: radarrStorage.baseUrl,
+            apiKey: radarrStorage.apiKey,
+            isDefault: true,
+            ignoreSslErrors: radarrStorage.ignoreSslErrors,
+            isSearchable: radarrStorage.isSearchable
+        )
+    }
+
+    private func buildSonarrInstance() -> ServiceInstance {
+        ServiceInstance(
+            id: Self.sonarrId,
+            type: .sonarr,
+            name: sonarrStorage.name,
+            baseUrl: sonarrStorage.baseUrl,
+            apiKey: sonarrStorage.apiKey,
+            isDefault: false,
+            ignoreSslErrors: sonarrStorage.ignoreSslErrors,
+            isSearchable: sonarrStorage.isSearchable
+        )
     }
 }

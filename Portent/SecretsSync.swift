@@ -1,20 +1,18 @@
 import Foundation
 
-/// Syncs PII secrets from ServiceInstanceStorage to LoggingManager for sanitization.
-/// Call on app startup (after loading instances) and whenever instances are added, edited, or deleted.
+/// Syncs PII secrets from RadarrSecureStorage and SonarrSecureStorage to LoggingManager for sanitization.
+/// Call on app startup (after loading instances) and whenever Radarr/Sonarr config is added, edited, or deleted.
 /// Secrets = apiKey and baseUrl per instance (per docs/analytics.md).
-///
-/// TODO: When add/edit instance is implemented, call syncSecretsToLoggingManager (or onInstancesChanged) after save.
 func syncSecretsToLoggingManager() {
-    let storage = ServiceInstanceStorage.shared
     let manager = LoggingManager.shared
     var secrets: Set<String> = []
-    for idStr in storage.instanceIds {
-        guard let id = UUID(uuidString: idStr) else { continue }
-        let baseUrl = storage.getBaseUrl(id: id)
-        let apiKey = storage.getApiKey(id: id)
-        if !baseUrl.isEmpty { secrets.insert(baseUrl) }
-        if !apiKey.isEmpty { secrets.insert(apiKey) }
+    if RadarrSecureStorage.shared.isConfigured {
+        if !RadarrSecureStorage.shared.baseUrl.isEmpty { secrets.insert(RadarrSecureStorage.shared.baseUrl) }
+        if !RadarrSecureStorage.shared.apiKey.isEmpty { secrets.insert(RadarrSecureStorage.shared.apiKey) }
+    }
+    if SonarrSecureStorage.shared.isConfigured {
+        if !SonarrSecureStorage.shared.baseUrl.isEmpty { secrets.insert(SonarrSecureStorage.shared.baseUrl) }
+        if !SonarrSecureStorage.shared.apiKey.isEmpty { secrets.insert(SonarrSecureStorage.shared.apiKey) }
     }
     manager.updateSecrets(secrets)
 }
