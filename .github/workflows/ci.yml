@@ -35,7 +35,7 @@ jobs:
     env:
       SWIFTLINT_IMAGE: ghcr.io/realm/swiftlint:0.63.2
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
@@ -81,7 +81,7 @@ jobs:
     runs-on: macos-15
     needs: swiftlint
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
@@ -96,7 +96,7 @@ jobs:
           fi
           echo "$GOOGLE_SERVICE_INFO_PLIST" | base64 -d > Portent/GoogleService-Info.plist
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: |
             ~/Library/Caches/org.swift.swiftpm
@@ -116,7 +116,7 @@ jobs:
             -enableCodeCoverage YES \
             | xcpretty
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: ios-test-results
@@ -131,7 +131,7 @@ jobs:
 
       - name: Post coverage comment on PR
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -148,7 +148,7 @@ jobs:
     runs-on: macos-15
     needs: unit-test
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
@@ -178,12 +178,12 @@ jobs:
   periphery:
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
       - name: Cache SPM
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .build
           key: spm-${{ runner.os }}-${{ hashFiles('**/Package.resolved') }}
@@ -197,7 +197,7 @@ jobs:
 
       - name: Upload Periphery report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: periphery-report
           path: periphery-output.xml
@@ -206,12 +206,12 @@ jobs:
   version-check:
     runs-on: [self-hosted, truenas]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.PORTENT_REPO_TOKEN }}
 
       - name: Checkout mono repo for version.json
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: zFadil995/portent
           path: mono-repo
