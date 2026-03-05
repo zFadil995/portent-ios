@@ -37,6 +37,6 @@ enum NetworkErrorMapper {
     }
 
     static func map(_ error: DecodingError) -> AppError {
-        .network(.invalidResponse(statusCode: 0))
+        .api(.unexpectedResponse)
     }
 }
