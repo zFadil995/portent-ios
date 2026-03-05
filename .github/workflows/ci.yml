@@ -116,7 +116,7 @@ jobs:
             -enableCodeCoverage YES \
             | xcpretty
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: ios-test-results
@@ -197,7 +197,7 @@ jobs:
 
       - name: Upload Periphery report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: periphery-report
           path: periphery-output.xml
