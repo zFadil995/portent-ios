@@ -10,7 +10,7 @@ globs: ["**/*.swift", "**/*.xcodeproj/**", "**/*.xcworkspace/**"]
 
 Use **iPhone Air** as the default simulator for running tests and builds.
 
-- **Test:** `cd apps/ios && xcodebuild test -scheme portent -configuration Debug -destination 'platform=iOS Simulator,name=iPhone Air,OS=latest'`
-- **Build:** `cd apps/ios && xcodebuild build -scheme portent -configuration Debug -sdk iphonesimulator`
+- **Test:** `portent-ios-test` (from repo root)
+- **Build:** `portent-ios-build` (from repo root)
 
-When specifying a destination, prefer `name=iPhone Air` over other simulators for consistency across runs.
+When specifying a destination, prefer `name=iPhone Air` over other simulators for consistency across runs. See root `scripts/portent-aliases.sh` for canonical commands.

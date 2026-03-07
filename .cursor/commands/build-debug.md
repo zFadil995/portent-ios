@@ -1,7 +1,7 @@
 # Build Debug (iOS)
 
-Build debug scheme and run unit tests via xcodebuild. Print results summary.
+Build debug scheme and run unit tests. Run from repo root.
 
-Run: `xcodebuild -scheme portent -configuration Debug build test`
+Run: `portent-ios-build-test`
 
 Output: build status, test count, pass/fail summary.
