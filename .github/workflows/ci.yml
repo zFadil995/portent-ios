@@ -113,7 +113,7 @@ jobs:
           # Canonical simulator — must match .cursor/commands/test-ios.md
           env CODE_SIGNING_ALLOWED=NO xcodebuild test \
             -scheme portent \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            -destination 'platform=iOS Simulator,name=iPhone Air,OS=latest' \
             -resultBundlePath TestResults \
             -enableCodeCoverage YES \
             | xcpretty
@@ -174,7 +174,7 @@ jobs:
           # Canonical simulator — must match .cursor/commands/test-ios.md
           env CODE_SIGNING_ALLOWED=NO xcodebuild build \
             -scheme portent \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            -destination 'platform=iOS Simulator,name=iPhone Air,OS=latest' \
             -configuration Debug \
             | xcpretty
 
