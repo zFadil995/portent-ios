@@ -1,7 +1,7 @@
 ---
 description: Swift concurrency patterns and data race safety
-globs: "**/*.swift"
 alwaysApply: false
+globs: ["**/*.swift"]
 ---
 
 # Concurrency

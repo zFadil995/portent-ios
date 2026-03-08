@@ -1,6 +1,7 @@
 ---
 description: Swift style conventions for iOS app
 alwaysApply: false
+globs: ["**/*.swift"]
 ---
 
 # Swift Style

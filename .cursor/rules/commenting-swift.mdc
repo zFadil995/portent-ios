@@ -1,7 +1,7 @@
 ---
 description: Swift commenting conventions — doc comments, cross-platform contracts, API behavior
 alwaysApply: false
-globs: ["apps/ios/**/*.swift"]
+globs: ["**/*.swift"]
 ---
 
 # Swift Commenting

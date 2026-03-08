@@ -1,13 +1,28 @@
 ---
-description: URLSession networking and API client rules
+description: iOS networking rules — URLSession, APIClient, and API integration patterns
 alwaysApply: false
+globs: ["**/Portent/**/*.swift", "**/data/**/*.swift", "**/network/**/*.swift"]
 ---
 
-# Networking
+# iOS Networking
 
-- URLSession async/await; no third-party HTTP in v1
-- Generic APIClient: request<T: Decodable>(_ endpoint) async throws -> T
-- Endpoint enum/struct for type-safe paths
-- Per-instance base URL and API key injection
-- Map URLError, HTTP status, DecodingError to AppError
-- Self-signed certs: URLSessionDelegate for server trust
+Platform-specific networking for `apps/ios/`. See `docs/api-integrations.md` for API overview.
+
+## Stack
+
+URLSession, async/await, Codable. APIClient factory with base URL and API key per instance.
+
+## Conventions
+
+- Use URLSession async/await; no third-party HTTP client in v1.
+- Prefer generic `APIClient` entry points such as `request<T: Decodable>(_ endpoint)` for shared transport behavior.
+- Model paths with endpoint enums/structs for type-safe routing.
+- Map all API errors (`URLError`, HTTP 4xx/5xx, timeout, decoding/serialization) to `AppError` at the data layer.
+- Use `CodingKeys` only when JSON keys differ from Swift property names.
+- Per-instance base URL and API key; no shared global client.
+- Self-signed certs: use a `URLSessionDelegate`-based server-trust flow when the instance configuration allows it.
+
+## References
+
+- `core/api/` — Endpoint specs (Radarr, Sonarr, Sabnzbd)
+- `docs/architecture.md` — Error hierarchy

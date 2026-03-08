@@ -1,6 +1,7 @@
 ---
 description: Keychain storage and App Transport Security rules
 alwaysApply: false
+globs: ["**/*.swift"]
 ---
 
 # Security

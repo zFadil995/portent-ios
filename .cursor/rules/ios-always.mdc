@@ -5,6 +5,10 @@ alwaysApply: true
 
 # iOS Platform Rules
 
+## Standalone context
+
+This rule is the implementation anchor for the iOS repo. When working via the monorepo, also see `portent/.cursor/rules/platform/ios-always.mdc` for project-level context.
+
 See `docs/agents/agent-ios.md` for full agent definition. This rule applies when working in `apps/ios/`.
 
 ## Stack

@@ -1,7 +1,7 @@
 ---
 description: Swift Testing conventions and patterns
-globs: "**/*Tests.swift", "**/*Test.swift"
 alwaysApply: false
+globs: ["**/portentTests/**/*.swift", "**/portentUITests/**/*.swift"]
 ---
 
 # Testing

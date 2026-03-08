@@ -1,6 +1,7 @@
 ---
 description: Error handling hierarchy and patterns
 alwaysApply: false
+globs: ["**/*.swift"]
 ---
 
 # Error Handling

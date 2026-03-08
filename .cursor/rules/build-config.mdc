@@ -1,7 +1,7 @@
 ---
 description: Xcode build configuration, xcconfig, and version management
-globs: "**/*.xcconfig", "**/project.pbxproj"
 alwaysApply: false
+globs: ["**/*.xcconfig", "**/project.pbxproj", "**/*.xctestplan"]
 ---
 
 # Build Config

@@ -1,6 +1,7 @@
 ---
 description: SwiftUI patterns for iOS app
 alwaysApply: false
+globs: ["**/Portent/**/*.swift"]
 ---
 
 # SwiftUI Patterns

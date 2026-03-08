@@ -1,6 +1,7 @@
 ---
 description: NavigationStack and TabView navigation conventions
 alwaysApply: false
+globs: ["**/Portent/**/*View*.swift", "**/Portent/**/*Navigation*.swift", "**/Portent/**/*Tab*.swift"]
 ---
 
 # Navigation

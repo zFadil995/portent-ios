@@ -1,6 +1,7 @@
 ---
 description: MVVM architecture for iOS app
 alwaysApply: false
+globs: ["**/Portent/**/*.swift"]
 ---
 
 # MVVM Architecture
