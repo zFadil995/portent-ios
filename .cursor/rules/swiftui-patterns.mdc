@@ -4,6 +4,11 @@ alwaysApply: false
 globs: ["**/Portent/**/*.swift"]
 ---
 
+> **Colour rule:** Never hardcode hex colour values in SwiftUI views. Always
+> use `Color("TokenName")` from the asset catalog or a typed `Color`
+> extension. Brand tokens are defined in `core/design/colors.json`.
+> See `.cursor/rules/ui/design-system.mdc`.
+
 # SwiftUI Patterns
 
 - Use `FeatureView` / `FeatureViewContents` per `.cursor/rules/ui/agent-ios.mdc`.
