@@ -5,6 +5,7 @@ import Foundation
 ///
 /// v1: One instance per supported ServiceType. Use `ServiceInstanceStorage.shared(for:)`
 /// to access the per-type singleton. Pass a custom `SecureStoreProtocol` in tests.
+@MainActor
 final class ServiceInstanceStorage: SecureStorage {
 
     let type: ServiceType
