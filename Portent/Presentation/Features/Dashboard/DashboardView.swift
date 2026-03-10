@@ -31,7 +31,7 @@ struct DashboardViewContents: View {
             dashboardContent(data)
         case .error(let appError):
             ContentUnavailableView(
-                "Error",
+                "screen_error_title",
                 systemImage: "exclamationmark.triangle",
                 description: Text(appError.toUserMessage())
             )
@@ -41,9 +41,9 @@ struct DashboardViewContents: View {
     @ViewBuilder
     private func dashboardContent(_ data: DashboardState) -> some View {
         ContentUnavailableView(
-            "Dashboard",
+            "tab_dashboard",
             systemImage: "house",
-            description: Text("Coming soon")
+            description: Text("screen_coming_soon")
         )
     }
 }

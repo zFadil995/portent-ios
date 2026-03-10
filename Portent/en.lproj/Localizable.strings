@@ -1,0 +1,121 @@
+// DO NOT EDIT — auto-generated from core/localization/en.json by tools/generate_strings.py
+
+
+/* The app display name shown in the OS and app store */
+"app_name" = "Portent";
+
+
+/* Label for the Dashboard tab in the main tab bar */
+"tab_dashboard" = "Dashboard";
+
+/* Label for the Calendar tab in the main tab bar */
+"tab_calendar" = "Calendar";
+
+/* Label for the Services tab in the main tab bar */
+"tab_services" = "Services";
+
+/* Label for the Search tab in the main tab bar */
+"tab_search" = "Search";
+
+/* Accessibility content description for the Dashboard tab button */
+"tab_dashboard_cd" = "Dashboard tab";
+
+/* Accessibility content description for the Calendar tab button */
+"tab_calendar_cd" = "Calendar tab";
+
+/* Accessibility content description for the Services tab button */
+"tab_services_cd" = "Services tab";
+
+/* Accessibility content description for the Search tab button */
+"tab_search_cd" = "Search tab";
+
+
+/* Error message when device cannot reach the server (network unreachable) */
+"error_network_unreachable" = "Unable to connect. Check your network.";
+
+/* Error message when a network request exceeds the timeout limit */
+"error_network_timeout" = "Request timed out. Try again.";
+
+/* Error message when SSL/TLS certificate validation fails */
+"error_network_ssl" = "Connection not secure. Check server certificate.";
+
+/* Error message when the server returns a response that cannot be parsed */
+"error_network_invalid_response" = "Invalid response from server.";
+
+/* Error message for HTTP 401 Unauthorized — wrong or missing API key */
+"error_api_unauthorized" = "Access denied. Check your API key.";
+
+/* Error message for HTTP 403 Forbidden — API key lacks required permissions */
+"error_api_forbidden" = "You don't have permission for this.";
+
+/* Error message for HTTP 404 Not Found — requested resource does not exist */
+"error_api_not_found" = "Not found.";
+
+/* Error message for HTTP 5xx Server Error — service-side failure */
+"error_api_server_error" = "Server error. Try again later.";
+
+/* Error message when the API returns an unexpected response code or body */
+"error_api_unexpected" = "Unexpected response from server.";
+
+/* Error message when no service instance has been set up in the app */
+"error_config_no_instance" = "No instance configured.";
+
+/* Error message when the configured base URL is malformed or empty */
+"error_config_invalid_base_url" = "Invalid server address.";
+
+/* Error message when the configured API key field is empty */
+"error_config_missing_api_key" = "API key is required.";
+
+/* Fallback error message for unknown or unclassified local errors */
+"error_local_unknown" = "Something went wrong. Try again.";
+
+
+/* Placeholder text shown inside the search bar input field when empty */
+"search_placeholder" = "Search movies, shows…";
+
+/* Accessibility label for the clear (X) button inside the search bar */
+"search_clear_cd" = "Clear";
+
+/* Heading shown on the search screen when no query has been entered yet */
+"search_empty_title" = "Find movies and shows";
+
+/* Subtitle shown below search.empty.title when no query has been entered */
+"search_empty_subtitle" = "Search across all your connected services";
+
+/* Navigation bar title for the Search screen (iOS NavigationStack) */
+"search_navigation_title" = "Search";
+
+/* Prompt text for the iOS system searchable modifier on the Search tab */
+"search_prompt" = "Search";
+
+
+/* Title shown in ContentUnavailableView / error placeholders when a screen is in the error state */
+"screen_error_title" = "Error";
+
+/* Description shown in ContentUnavailableView for stub/placeholder screens not yet implemented */
+"screen_coming_soon" = "Coming soon";
+
+
+/* TMP: Placeholder search suggestion displayed while SearchViewModel is not yet wired to a real API. Remove in Phase C when live results replace this list. */
+"tmp_search_suggestion_breaking_bad" = "Breaking Bad";
+
+/* TMP: Placeholder search suggestion displayed while SearchViewModel is not yet wired to a real API. Remove in Phase C when live results replace this list. */
+"tmp_search_suggestion_the_bear" = "The Bear";
+
+/* TMP: Placeholder search suggestion displayed while SearchViewModel is not yet wired to a real API. Remove in Phase C when live results replace this list. */
+"tmp_search_suggestion_severance" = "Severance";
+
+/* TMP: Placeholder search suggestion displayed while SearchViewModel is not yet wired to a real API. Remove in Phase C when live results replace this list. */
+"tmp_search_suggestion_dune" = "Dune";
+
+/* TMP: Placeholder search suggestion displayed while SearchViewModel is not yet wired to a real API. Remove in Phase C when live results replace this list. */
+"tmp_search_suggestion_oppenheimer" = "Oppenheimer";
+
+/* TMP: Placeholder search suggestion displayed while SearchViewModel is not yet wired to a real API. Remove in Phase C when live results replace this list. */
+"tmp_search_suggestion_alien_romulus" = "Alien: Romulus";
+
+/* TMP: Placeholder search suggestion displayed while SearchViewModel is not yet wired to a real API. Remove in Phase C when live results replace this list. */
+"tmp_search_suggestion_shogun" = "Shogun";
+
+/* TMP: Placeholder search suggestion displayed while SearchViewModel is not yet wired to a real API. Remove in Phase C when live results replace this list. */
+"tmp_search_suggestion_the_last_of_us" = "The Last of Us";

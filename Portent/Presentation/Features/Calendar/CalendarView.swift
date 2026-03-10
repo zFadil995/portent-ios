@@ -31,7 +31,7 @@ struct CalendarViewContents: View {
             calendarContent(data)
         case .error(let appError):
             ContentUnavailableView(
-                "Error",
+                "screen_error_title",
                 systemImage: "exclamationmark.triangle",
                 description: Text(appError.toUserMessage())
             )
@@ -41,9 +41,9 @@ struct CalendarViewContents: View {
     @ViewBuilder
     private func calendarContent(_ data: CalendarState) -> some View {
         ContentUnavailableView(
-            "Calendar",
+            "tab_calendar",
             systemImage: "calendar",
-            description: Text("Coming soon")
+            description: Text("screen_coming_soon")
         )
     }
 }

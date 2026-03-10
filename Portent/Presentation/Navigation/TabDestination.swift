@@ -11,10 +11,10 @@ enum TabDestination: String, CaseIterable, Identifiable {
 
     var label: String {
         switch self {
-        case .dashboard: return "Dashboard"
-        case .calendar: return "Calendar"
-        case .services: return "Services"
-        case .search: return "Search"
+        case .dashboard: return String(localized: "tab_dashboard")
+        case .calendar: return String(localized: "tab_calendar")
+        case .services: return String(localized: "tab_services")
+        case .search: return String(localized: "tab_search")
         }
     }
 

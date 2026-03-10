@@ -32,7 +32,7 @@ struct SearchViewContents: View {
             searchContent(data)
         case .error(let appError):
             ContentUnavailableView(
-                "Error",
+                "screen_error_title",
                 systemImage: "exclamationmark.triangle",
                 description: Text(appError.toUserMessage())
             )
@@ -42,9 +42,9 @@ struct SearchViewContents: View {
     @ViewBuilder
     private func searchContent(_ data: SearchState) -> some View {
         ContentUnavailableView(
-            "Search",
+            "tab_search",
             systemImage: "magnifyingglass",
-            description: Text("Coming soon")
+            description: Text("screen_coming_soon")
         )
     }
 }

@@ -31,7 +31,7 @@ struct ServicesViewContents: View {
             servicesContent(data)
         case .error(let appError):
             ContentUnavailableView(
-                "Error",
+                "screen_error_title",
                 systemImage: "exclamationmark.triangle",
                 description: Text(appError.toUserMessage())
             )
@@ -41,9 +41,9 @@ struct ServicesViewContents: View {
     @ViewBuilder
     private func servicesContent(_ data: ServicesState) -> some View {
         ContentUnavailableView(
-            "Services",
+            "tab_services",
             systemImage: "server.rack",
-            description: Text("Coming soon")
+            description: Text("screen_coming_soon")
         )
     }
 }

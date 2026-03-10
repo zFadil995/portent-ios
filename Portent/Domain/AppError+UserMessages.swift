@@ -5,31 +5,31 @@ extension AppError {
     func toUserMessage() -> String {
         switch self {
         case .network(.unreachable):
-            return "Unable to connect. Check your network."
+            return String(localized: "error_network_unreachable")
         case .network(.timeout):
-            return "Request timed out. Try again."
+            return String(localized: "error_network_timeout")
         case .network(.sslError):
-            return "Connection not secure. Check server certificate."
+            return String(localized: "error_network_ssl")
         case .network(.invalidResponse):
-            return "Invalid response from server."
+            return String(localized: "error_network_invalid_response")
         case .api(.unauthorized):
-            return "Access denied. Check your API key."
+            return String(localized: "error_api_unauthorized")
         case .api(.forbidden):
-            return "You don't have permission for this."
+            return String(localized: "error_api_forbidden")
         case .api(.notFound):
-            return "Not found."
+            return String(localized: "error_api_not_found")
         case .api(.serverError):
-            return "Server error. Try again later."
+            return String(localized: "error_api_server_error")
         case .api(.unexpectedResponse):
-            return "Unexpected response from server."
+            return String(localized: "error_api_unexpected")
         case .config(.noInstanceConfigured):
-            return "No instance configured."
+            return String(localized: "error_config_no_instance")
         case .config(.invalidBaseUrl):
-            return "Invalid server address."
+            return String(localized: "error_config_invalid_base_url")
         case .config(.missingApiKey):
-            return "API key is required."
+            return String(localized: "error_config_missing_api_key")
         case .local(.unknown):
-            return "Something went wrong. Try again."
+            return String(localized: "error_local_unknown")
         }
     }
 }
