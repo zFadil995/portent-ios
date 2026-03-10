@@ -1,7 +1,7 @@
 {
   "images": [
     {
-      "filename": "icon-light-1024.png",
+      "filename": "launch-icon-light-1024.png",
       "idiom": "universal",
       "scale": "1x"
     },
@@ -12,7 +12,7 @@
           "value": "dark"
         }
       ],
-      "filename": "icon-dark-1024.png",
+      "filename": "launch-icon-dark-1024.png",
       "idiom": "universal",
       "scale": "1x"
     }
