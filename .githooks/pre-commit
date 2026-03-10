@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Pre-commit hook: secret scanning via gitleaks.
+# Setup: git config core.hooksPath .githooks
+# Skip (emergency): SKIP_SECRET_SCAN=1 git commit
+
+if [ "${SKIP_SECRET_SCAN:-0}" = "1" ]; then
+  echo "WARNING: Secret scan skipped (SKIP_SECRET_SCAN=1)" >&2
+  exit 0
+fi
+
+if ! command -v gitleaks &> /dev/null; then
+  echo "WARNING: gitleaks not installed — secret scan skipped." >&2
+  echo "Install with: brew install gitleaks" >&2
+  exit 0
+fi
+
+echo "Running gitleaks secret scan..."
+if ! gitleaks detect --source . --redact 2>&1; then
+  echo ""
+  echo "ERROR: Potential secrets detected. Commit blocked." >&2
+  echo "Review the output above. If this is a false positive, add a gitleaks:allow comment" >&2
+  echo "or update .gitleaks.toml. Use SKIP_SECRET_SCAN=1 only in emergencies." >&2
+  exit 1
+fi
+echo "Secret scan passed."
