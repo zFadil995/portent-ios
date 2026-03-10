@@ -55,8 +55,13 @@ jobs:
             ~/.swiftpm
           key: ${{ runner.os }}-spm-${{ hashFiles('Portent.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
 
-      - name: Install xcpretty
-        run: gem install xcpretty
+      - name: Verify xcpretty is available
+        run: |
+          if ! command -v xcpretty >/dev/null 2>&1; then
+            echo "::error::xcpretty is not available on this runner. Preinstall it on the self-hosted runner and ensure it is on PATH."
+            exit 1
+          fi
+          xcpretty --version
 
       - name: Run unit tests
         run: |
@@ -116,8 +121,13 @@ jobs:
           fi
           echo "$GOOGLE_SERVICE_INFO_PLIST" | base64 -d > Portent/GoogleService-Info.plist
 
-      - name: Install xcpretty
-        run: gem install xcpretty
+      - name: Verify xcpretty is available
+        run: |
+          if ! command -v xcpretty >/dev/null 2>&1; then
+            echo "::error::xcpretty is not available on this runner. Preinstall it on the self-hosted runner and ensure it is on PATH."
+            exit 1
+          fi
+          xcpretty --version
 
       - name: Build
         run: |
