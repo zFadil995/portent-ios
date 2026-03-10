@@ -30,6 +30,10 @@
 "tab_search_cd" = "Search tab";
 
 
+/* Accessibility label for all loading indicators (ProgressView / CircularProgressIndicator) */
+"common_loading" = "Loading";
+
+
 /* Error message when device cannot reach the server (network unreachable) */
 "error_network_unreachable" = "Unable to connect. Check your network.";
 

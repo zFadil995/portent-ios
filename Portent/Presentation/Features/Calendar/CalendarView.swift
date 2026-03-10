@@ -21,10 +21,12 @@ struct CalendarViewContents: View {
         switch state {
         case .loading:
             ProgressView()
+                .accessibilityLabel("common_loading")
         case .refreshing(let staleData):
             calendarContent(staleData)
                 .overlay(alignment: .top) {
                     ProgressView()
+                        .accessibilityLabel("common_loading")
                         .padding(.top, LayoutConstants.RefreshOverlay.topPadding)
                 }
         case .success(let data):

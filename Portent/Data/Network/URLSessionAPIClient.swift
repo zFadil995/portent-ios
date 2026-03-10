@@ -58,7 +58,7 @@ final class URLSessionAPIClient: APIClient {
             throw AppError.network(.invalidResponse(statusCode: 0))
         }
 
-        guard (200..<300).contains(httpResponse.statusCode) else {
+        guard HTTPStatusCode.successRange.contains(httpResponse.statusCode) else {
             throw NetworkErrorMapper.map(statusCode: httpResponse.statusCode)
         }
 

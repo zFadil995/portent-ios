@@ -28,10 +28,12 @@ struct SearchViewContents: View {
         switch state {
         case .loading:
             ProgressView()
+                .accessibilityLabel("common_loading")
         case .refreshing(let staleData):
             searchContent(staleData, isLoading: true)
                 .overlay(alignment: .top) {
                     ProgressView()
+                        .accessibilityLabel("common_loading")
                         .padding(.top, LayoutConstants.RefreshOverlay.topPadding)
                 }
         case .success(let data):
@@ -49,6 +51,7 @@ struct SearchViewContents: View {
     private func searchContent(_ data: SearchState, isLoading: Bool) -> some View {
         if isLoading {
             ProgressView()
+                .accessibilityLabel("common_loading")
         } else {
             ContentUnavailableView(
                 "search_empty_title",

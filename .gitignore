@@ -17,6 +17,15 @@ xcuserdata/
 GoogleService-Info.plist
 .swiftpm/
 
+# Env files (may contain secrets)
+.env
+.env.*
+
+# Provisioning / signing (never commit)
+*.p12
+*.mobileprovision
+*.pem
+
 # App packaging
 *.ipa
 *.dSYM.zip
