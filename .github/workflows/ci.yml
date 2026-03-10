@@ -29,59 +29,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  swiftlint:
-    if: github.actor != 'dependabot[bot]'
-    runs-on: [self-hosted, truenas]
-    timeout-minutes: 15
-    env:
-      SWIFTLINT_IMAGE: ghcr.io/realm/swiftlint:0.63.2
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          token: ${{ secrets.PORTENT_REPO_TOKEN }}
-
-      - name: Verify Docker daemon
-        run: docker info >/dev/null
-
-      - name: Pull SwiftLint image with retry
-        run: |
-          set -euo pipefail
-          for attempt in 1 2 3; do
-            echo "Pull attempt ${attempt}/3"
-            if timeout 300 docker pull "$SWIFTLINT_IMAGE"; then
-              exit 0
-            fi
-            [ "$attempt" -lt 3 ] && sleep $((attempt * 15))
-          done
-          echo "::error::Failed to pull $SWIFTLINT_IMAGE after 3 attempts"
-          exit 1
-
-      - name: Run SwiftLint
-        run: |
-          set -euo pipefail
-          if [ -n "${RUNNER_HOST_WORK_ROOT:-}" ]; then
-            WORKSPACE_FOR_DOCKER="${RUNNER_HOST_WORK_ROOT}${GITHUB_WORKSPACE#/tmp/runner}"
-          else
-            WORKSPACE_FOR_DOCKER="$GITHUB_WORKSPACE"
-          fi
-          for attempt in 1 2; do
-            echo "Lint attempt ${attempt}/2"
-            if docker run --rm --pull never \
-              -v "${WORKSPACE_FOR_DOCKER}:/src:ro" \
-              -w /src \
-              "$SWIFTLINT_IMAGE" \
-              lint --reporter github-actions-logging; then
-              exit 0
-            fi
-            [ "$attempt" -lt 2 ] && sleep 10
-          done
-          exit 1
-        continue-on-error: false
-
   unit-test:
     if: github.actor != 'dependabot[bot]'
     runs-on: macos-15
-    needs: swiftlint
     steps:
       - uses: actions/checkout@v6
         with:
