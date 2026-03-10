@@ -1,12 +1,26 @@
 ---
-description: Xcode build configuration, xcconfig, and version management
+description: iOS Xcode build config and sync group conventions
 alwaysApply: false
-globs: ["**/*.xcconfig", "**/project.pbxproj", "**/*.xctestplan"]
 ---
 
-# Build Config
+# iOS Build Config
 
-- xcconfig for Debug/Release; optional Dev/Prod
-- MARKETING_VERSION, CURRENT_PROJECT_VERSION from version.json via sync-version.sh
-- Schemes choose configurations
-- macOS: [sdk=macosx] conditionals where needed
+## Xcode Sync Groups
+
+This project uses Xcode file system synchronized groups for `Portent/` and `portentTests/`.
+
+- ✅ Create new Swift files, asset catalogs, and test files directly under `apps/ios/Portent/` or `apps/ios/portentTests/`
+- ✅ Xcode will include them automatically — no project file edits needed
+- ❌ Do not add `PBXFileReference` or `PBXBuildFile` entries for source or asset files
+- ❌ Do not modify `project.pbxproj` just to register new files
+
+## When to Edit project.pbxproj
+
+Only update `Portent.xcodeproj/project.pbxproj` for actual project configuration:
+
+- Build settings (e.g. `INFOPLIST_FILE`, deployment target)
+- Package dependencies
+- Signing and target configuration
+- Version/build number (per repo bump workflow)
+
+If you are only adding files under `Portent/` or `portentTests/`, do not touch `project.pbxproj`.
