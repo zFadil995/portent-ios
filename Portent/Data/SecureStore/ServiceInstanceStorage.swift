@@ -78,4 +78,6 @@ final class ServiceInstanceStorage: SecureStorage {
         isSearchable = true
         onChanged?()
     }
+
+    deinit { }
 }
