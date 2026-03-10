@@ -5,6 +5,22 @@ import UIKit
 import AppKit
 #endif
 
+private enum HexColorParsing {
+    static let fullAlpha: UInt64 = 255
+    static let shortLength = 3
+    static let rgbLength = 6
+    static let rgbaLength = 8
+    static let shortMultiplier: UInt64 = 17
+    static let shortRedShift = 8
+    static let shortGreenShift = 4
+    static let redShift = 16
+    static let greenShift = 8
+    static let alphaShift = 24
+    static let byteMask: UInt64 = 0xFF
+    static let nibbleMask: UInt64 = 0xF
+    static let sRGBDivisor: Double = 255
+}
+
 extension Color {
     /// Dynamic color that resolves to light or dark based on interface style.
     init(light: Color, dark: Color) {
@@ -35,21 +51,36 @@ extension Color {
         Scanner(string: hex).scanHexInt64(&int)
         let alpha, red, green, blue: UInt64
         switch hex.count {
-        case 3:
-            (alpha, red, green, blue) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6:
-            (alpha, red, green, blue) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8:
-            (alpha, red, green, blue) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        case HexColorParsing.shortLength:
+            (alpha, red, green, blue) = (
+                HexColorParsing.fullAlpha,
+                (int >> HexColorParsing.shortRedShift) * HexColorParsing.shortMultiplier,
+                (int >> HexColorParsing.shortGreenShift & HexColorParsing.nibbleMask) * HexColorParsing.shortMultiplier,
+                (int & HexColorParsing.nibbleMask) * HexColorParsing.shortMultiplier
+            )
+        case HexColorParsing.rgbLength:
+            (alpha, red, green, blue) = (
+                HexColorParsing.fullAlpha,
+                int >> HexColorParsing.redShift,
+                int >> HexColorParsing.greenShift & HexColorParsing.byteMask,
+                int & HexColorParsing.byteMask
+            )
+        case HexColorParsing.rgbaLength:
+            (alpha, red, green, blue) = (
+                int >> HexColorParsing.alphaShift,
+                int >> HexColorParsing.redShift & HexColorParsing.byteMask,
+                int >> HexColorParsing.greenShift & HexColorParsing.byteMask,
+                int & HexColorParsing.byteMask
+            )
         default:
-            (alpha, red, green, blue) = (255, 0, 0, 0)
+            (alpha, red, green, blue) = (HexColorParsing.fullAlpha, 0, 0, 0)
         }
         self.init(
             .sRGB,
-            red: Double(red) / 255,
-            green: Double(green) / 255,
-            blue: Double(blue) / 255,
-            opacity: Double(alpha) / 255
+            red: Double(red) / HexColorParsing.sRGBDivisor,
+            green: Double(green) / HexColorParsing.sRGBDivisor,
+            blue: Double(blue) / HexColorParsing.sRGBDivisor,
+            opacity: Double(alpha) / HexColorParsing.sRGBDivisor
         )
     }
 

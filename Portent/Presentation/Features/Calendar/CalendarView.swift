@@ -25,7 +25,7 @@ struct CalendarViewContents: View {
             calendarContent(staleData)
                 .overlay(alignment: .top) {
                     ProgressView()
-                        .padding(.top, 8)
+                        .padding(.top, LayoutConstants.RefreshOverlay.topPadding)
                 }
         case .success(let data):
             calendarContent(data)

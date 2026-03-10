@@ -23,13 +23,13 @@ enum NetworkErrorMapper {
 
     static func map(statusCode: Int) -> AppError {
         switch statusCode {
-        case 401:
+        case HTTPStatusCode.unauthorized:
             return .api(.unauthorized)
-        case 403:
+        case HTTPStatusCode.forbidden:
             return .api(.forbidden)
-        case 404:
+        case HTTPStatusCode.notFound:
             return .api(.notFound)
-        case 500...599:
+        case HTTPStatusCode.serverErrorRange:
             return .api(.serverError(code: statusCode))
         default:
             return .api(.unexpectedResponse)

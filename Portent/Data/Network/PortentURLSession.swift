@@ -1,12 +1,17 @@
 import Foundation
 
+private enum Timeout {
+    static let request: TimeInterval = 30
+    static let resource: TimeInterval = 60
+}
+
 /// Factory for URLSession configured per ServiceInstance.
 enum PortentURLSession {
     /// Uses trust-all delegate when instance has ignoreSslErrors enabled.
     static func session(for instance: ServiceInstance) -> URLSession {
         let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 30
-        config.timeoutIntervalForResource = 60
+        config.timeoutIntervalForRequest = Timeout.request
+        config.timeoutIntervalForResource = Timeout.resource
 
         if instance.ignoreSslErrors {
             // WARNING: Only use for user-configured self-signed cert instances

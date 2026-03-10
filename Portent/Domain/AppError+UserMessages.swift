@@ -4,31 +4,55 @@ import Foundation
 extension AppError {
     func toUserMessage() -> String {
         switch self {
-        case .network(.unreachable):
+        case .network(let err): return networkMessage(err)
+        case .api(let err): return apiMessage(err)
+        case .config(let err): return configMessage(err)
+        case .local(let err): return localMessage(err)
+        }
+    }
+
+    private func networkMessage(_ error: NetworkError) -> String {
+        switch error {
+        case .unreachable:
             return String(localized: "error_network_unreachable")
-        case .network(.timeout):
+        case .timeout:
             return String(localized: "error_network_timeout")
-        case .network(.sslError):
+        case .sslError:
             return String(localized: "error_network_ssl")
-        case .network(.invalidResponse):
+        case .invalidResponse:
             return String(localized: "error_network_invalid_response")
-        case .api(.unauthorized):
+        }
+    }
+
+    private func apiMessage(_ error: ApiError) -> String {
+        switch error {
+        case .unauthorized:
             return String(localized: "error_api_unauthorized")
-        case .api(.forbidden):
+        case .forbidden:
             return String(localized: "error_api_forbidden")
-        case .api(.notFound):
+        case .notFound:
             return String(localized: "error_api_not_found")
-        case .api(.serverError):
+        case .serverError:
             return String(localized: "error_api_server_error")
-        case .api(.unexpectedResponse):
+        case .unexpectedResponse:
             return String(localized: "error_api_unexpected")
-        case .config(.noInstanceConfigured):
+        }
+    }
+
+    private func configMessage(_ error: ConfigError) -> String {
+        switch error {
+        case .noInstanceConfigured:
             return String(localized: "error_config_no_instance")
-        case .config(.invalidBaseUrl):
+        case .invalidBaseUrl:
             return String(localized: "error_config_invalid_base_url")
-        case .config(.missingApiKey):
+        case .missingApiKey:
             return String(localized: "error_config_missing_api_key")
-        case .local(.unknown):
+        }
+    }
+
+    private func localMessage(_ error: LocalError) -> String {
+        switch error {
+        case .unknown:
             return String(localized: "error_local_unknown")
         }
     }

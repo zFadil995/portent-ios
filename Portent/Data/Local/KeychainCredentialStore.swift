@@ -14,7 +14,7 @@ final class KeychainCredentialStore: CredentialStore {
 
     private static let supportedTypes: [ServiceType: UUID] = [
         .radarr: radarrId,
-        .sonarr: sonarrId,
+        .sonarr: sonarrId
     ]
 
     func saveInstance(_ instance: ServiceInstance) async throws {
