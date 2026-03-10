@@ -15,3 +15,4 @@ no_magic_numbers:
 line_length:
   warning: 120
   error: 200
+# CI trigger
