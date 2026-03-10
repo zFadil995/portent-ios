@@ -1,14 +1,20 @@
 import SwiftUI
 
 /// Host view for Search. Owns ViewModel and passes state to SearchViewContents.
+/// Accepts a searchText binding from the parent TabView so the system search bar
+/// feeds into the ViewModel (iOS uses .searchable at the NavigationStack level).
 struct SearchView: View {
     @State private var viewModel = SearchViewModel()
+    @Binding var searchText: String
 
     var body: some View {
         SearchViewContents(
             state: viewModel.state,
             onRefresh: { viewModel.refresh() }
         )
+        .onChange(of: searchText) { _, newValue in
+            viewModel.onQueryChange(newValue)
+        }
     }
 }
 
@@ -23,13 +29,13 @@ struct SearchViewContents: View {
         case .loading:
             ProgressView()
         case .refreshing(let staleData):
-            searchContent(staleData)
+            searchContent(staleData, isLoading: true)
                 .overlay(alignment: .top) {
                     ProgressView()
                         .padding(.top, LayoutConstants.RefreshOverlay.topPadding)
                 }
         case .success(let data):
-            searchContent(data)
+            searchContent(data, isLoading: false)
         case .error(let appError):
             ContentUnavailableView(
                 "screen_error_title",
@@ -40,18 +46,29 @@ struct SearchViewContents: View {
     }
 
     @ViewBuilder
-    private func searchContent(_ data: SearchState) -> some View {
-        ContentUnavailableView(
-            "tab_search",
-            systemImage: "magnifyingglass",
-            description: Text("screen_coming_soon")
-        )
+    private func searchContent(_ data: SearchState, isLoading: Bool) -> some View {
+        if isLoading {
+            ProgressView()
+        } else {
+            ContentUnavailableView(
+                "search_empty_title",
+                systemImage: "magnifyingglass",
+                description: Text("search_empty_subtitle")
+            )
+        }
     }
 }
 
-#Preview {
+#Preview("Empty state") {
     SearchViewContents(
         state: .success(SearchState()),
+        onRefresh: {}
+    )
+}
+
+#Preview("Error state") {
+    SearchViewContents(
+        state: .error(.network(.unreachable)),
         onRefresh: {}
     )
 }

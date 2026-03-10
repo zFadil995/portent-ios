@@ -16,7 +16,7 @@ struct NativeTabView: View {
             }
             Tab(TabDestination.search.label, systemImage: TabDestination.search.systemImage, role: .search) {
                 NavigationStack {
-                    SearchView()
+                    SearchView(searchText: $searchText)
                         .navigationTitle("search_navigation_title")
                 }
                 .searchable(text: $searchText, prompt: "search_prompt")

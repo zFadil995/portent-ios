@@ -96,6 +96,85 @@
 "screen_coming_soon" = "Coming soon";
 
 
+/* Label for the ignoreSslErrors toggle on the Add/Edit Instance form */
+"instance_form_ssl_toggle_label" = "Disable SSL verification";
+
+/* MITM risk warning shown adjacent to the ignoreSslErrors toggle on Add/Edit Instance form. Mandatory per docs/design/instance-ssl-warning.md. Never hide behind a help icon. */
+"instance_form_ssl_warning" = "Disabling SSL verification may expose you to man-in-the-middle attacks. Only enable for trusted self-hosted servers.";
+
+/* Title of confirmation dialog shown when the user enables ignoreSslErrors */
+"instance_form_ssl_confirmation_title" = "Disable SSL Verification?";
+
+/* Body of confirmation dialog shown when the user enables ignoreSslErrors */
+"instance_form_ssl_confirmation_message" = "Disabling SSL verification may expose you to man-in-the-middle attacks. Only enable this for trusted self-hosted servers.";
+
+/* Confirm button in the ignoreSslErrors confirmation dialog */
+"instance_form_ssl_confirmation_confirm" = "Disable";
+
+/* Cancel button in the ignoreSslErrors confirmation dialog */
+"instance_form_ssl_confirmation_cancel" = "Cancel";
+
+/* Label for the instance name field on the Add/Edit Instance form */
+"instance_form_name_label" = "Name";
+
+/* Placeholder for the instance name field when empty */
+"instance_form_name_placeholder" = "My Radarr";
+
+/* Label for the base URL field on the Add/Edit Instance form */
+"instance_form_base_url_label" = "Server URL";
+
+/* Placeholder for the base URL field showing a typical self-hosted server address */
+"instance_form_base_url_placeholder" = "http://192.168.1.100:7878";
+
+/* Label for the API key field on the Add/Edit Instance form */
+"instance_form_api_key_label" = "API Key";
+
+/* Placeholder for the API key field when empty */
+"instance_form_api_key_placeholder" = "Paste your API key";
+
+/* Button that tests the connection to the configured instance */
+"instance_form_test_connection" = "Test Connection";
+
+/* Feedback shown when the test connection succeeds */
+"instance_form_test_connection_success" = "Connected successfully";
+
+/* Feedback shown when the test connection fails */
+"instance_form_test_connection_failure" = "Connection failed";
+
+/* Save/submit button on the Add/Edit Instance form */
+"instance_form_save" = "Save";
+
+/* Button or navigation title for adding a new service instance */
+"instance_list_add" = "Add Instance";
+
+/* Title shown when no service instances are configured */
+"instance_list_empty_title" = "No services configured";
+
+/* Subtitle shown below the empty state title on the Services screen */
+"instance_list_empty_subtitle" = "Add a Radarr, Sonarr, or SABnzbd instance to get started.";
+
+/* Edit action for a configured instance in the Services list */
+"instance_list_edit" = "Edit";
+
+/* Delete action for a configured instance in the Services list */
+"instance_list_delete" = "Delete";
+
+/* Title of confirmation dialog when the user tries to delete an instance */
+"instance_list_delete_confirmation_title" = "Delete Instance?";
+
+/* Body of the delete confirmation dialog */
+"instance_list_delete_confirmation_message" = "This will remove all credentials for this instance.";
+
+/* Confirm button in the delete instance confirmation dialog */
+"instance_list_delete_confirmation_confirm" = "Delete";
+
+/* Status label shown for a service type that has no instance configured yet */
+"instance_list_not_configured" = "Not configured";
+
+/* Status label shown for a service type that has a configured instance */
+"instance_list_configured" = "Configured";
+
+
 /* TMP: Placeholder search suggestion displayed while SearchViewModel is not yet wired to a real API. Remove in Phase C when live results replace this list. */
 "tmp_search_suggestion_breaking_bad" = "Breaking Bad";
 
