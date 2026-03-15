@@ -16,7 +16,7 @@ URLSession, async/await, Codable. APIClient factory with base URL and API key pe
 ## Conventions
 
 - Use URLSession async/await; no third-party HTTP client in v1.
-- Prefer generic `APIClient` entry points such as `request<T: Decodable>(_ endpoint)` for shared transport behavior.
+- Prefer generic `APIClient` entry points (e.g. `request(_ endpoint)` for Decodable response types) for shared transport behavior.
 - Model paths with endpoint enums/structs for type-safe routing.
 - Map all API errors (`URLError`, HTTP 4xx/5xx, timeout, decoding/serialization) to `AppError` at the data layer.
 - Use `CodingKeys` only when JSON keys differ from Swift property names.
