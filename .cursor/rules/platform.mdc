@@ -1,6 +1,7 @@
 ---
 description: iOS platform rules — references root rules; platform-specific rules live here
 alwaysApply: false
+globs: ["**/*.swift", "**/*.xcodeproj/**"]
 ---
 
 # iOS Platform Rules

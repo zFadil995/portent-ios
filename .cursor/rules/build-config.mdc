@@ -1,6 +1,7 @@
 ---
 description: iOS Xcode build config and sync group conventions
 alwaysApply: false
+globs: ["**/*.pbxproj", "**/*.xcodeproj/**", "**/*.swift"]
 ---
 
 # iOS Build Config
