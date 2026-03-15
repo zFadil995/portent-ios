@@ -2,8 +2,6 @@
 description: Git branch, commit, and PR conventions
 alwaysApply: true
 ---
-<!-- cursor-doctor: conflicts with commenting-swift.mdc — review manually -->
-
 # Git Workflow
 
 ## Branch Naming
@@ -30,7 +28,7 @@ Same slug across repos for cross-platform features.
 
 ## Polyrepo Commits
 
-When changes affect multiple repos, commit in each affected repo separately. See mono `git-workflow.mdc` for full guidance.
+When changes affect multiple repos, commit in each affected repo separately. See mono `git-commit-pr.mdc` for full guidance (commit format, PR, polyrepo). See `git-core.mdc` for safety.
 
 Do not push unless explicitly asked. Local commits only.
 

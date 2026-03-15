@@ -3,8 +3,6 @@ description: iOS networking rules — URLSession, APIClient, and API integration
 alwaysApply: false
 globs: ["**/Portent/**/*.swift", "**/data/**/*.swift", "**/network/**/*.swift"]
 ---
-<!-- cursor-doctor: conflicts with ios-always.mdc — review manually -->
-
 # iOS Networking
 
 Platform-specific networking for `apps/ios/`. See `docs/api-integrations.md` for API overview.

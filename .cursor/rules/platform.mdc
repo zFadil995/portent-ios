@@ -10,14 +10,14 @@ Platform-specific rules for `apps/ios/`. Shared rules live in the repo root.
 
 ## What to do
 
-- Use root rules under `../../../../.cursor/rules/` (core, general, ui, development, testing) for cross-repo guidance.
+- Use root rules under `.cursor/rules/` (core, general, ui, development, testing) for cross-repo guidance when workspace is monorepo root.
 - Use this directory (`apps/ios/.cursor/rules/`) for iOS-only rules.
 - Follow `docs/architecture.md` for layer and MVVM conventions.
 - Ensure parity with Android per `.cursor/rules/core/cross-platform-contract.mdc`.
 
 ## References
 
-- **Root rules:** `../../../../.cursor/rules/` (core, general, ui, development, testing)
+- **Root rules:** `.cursor/rules/` (core, general, ui, development, testing) — workspace root when in monorepo
 - **Platform rules:** This directory (`apps/ios/.cursor/rules/`)
 - **Architecture:** `docs/architecture.md`
 - **Cross-platform contract:** `.cursor/rules/core/cross-platform-contract.mdc`

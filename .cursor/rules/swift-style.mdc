@@ -3,8 +3,6 @@ description: Swift style conventions for iOS app
 alwaysApply: false
 globs: ["**/*.swift"]
 ---
-<!-- cursor-doctor: conflicts with git-workflow.mdc — review manually -->
-
 # Swift Style
 
 - Follow Swift 6 and Swift API Design Guidelines.

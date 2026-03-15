@@ -3,8 +3,6 @@ description: Swift commenting conventions — doc comments, cross-platform contr
 alwaysApply: false
 globs: ["**/*.swift"]
 ---
-<!-- cursor-doctor: conflicts with git-workflow.mdc — review manually -->
-
 # Swift Commenting
 
 Inherits philosophy from `.cursor/rules/core/commenting.mdc`: explain WHY not WHAT, comment only non-trivial code, remove noise, keep comments in sync.
@@ -67,6 +65,7 @@ func itemCount() -> Int {
 **Fixed** (delete the comment — the code is self-explanatory):
 
 ```swift
+func itemCount() -> Int {
     items.count
 }
 ```
