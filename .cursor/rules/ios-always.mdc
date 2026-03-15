@@ -2,6 +2,7 @@
 description: iOS platform rules — always applied when working in apps/ios/
 alwaysApply: true
 ---
+<!-- cursor-doctor: conflicts with networking.mdc — review manually -->
 
 # iOS Platform Rules
 

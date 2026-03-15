@@ -3,6 +3,7 @@ description: iOS networking rules — URLSession, APIClient, and API integration
 alwaysApply: false
 globs: ["**/Portent/**/*.swift", "**/data/**/*.swift", "**/network/**/*.swift"]
 ---
+<!-- cursor-doctor: conflicts with ios-always.mdc — review manually -->
 
 # iOS Networking
 
@@ -24,5 +25,5 @@ URLSession, async/await, Codable. APIClient factory with base URL and API key pe
 
 ## References
 
-- `core/api/` — Endpoint specs (Radarr, Sonarr, Sabnzbd)
-- `docs/architecture.md` — Error hierarchy
+- core/api/: Endpoint specs (Radarr, Sonarr, Sabnzbd)
+- docs/architecture.md: Error hierarchy

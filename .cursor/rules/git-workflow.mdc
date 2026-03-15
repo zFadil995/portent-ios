@@ -2,6 +2,7 @@
 description: Git branch, commit, and PR conventions
 alwaysApply: true
 ---
+<!-- cursor-doctor: conflicts with commenting-swift.mdc — review manually -->
 
 # Git Workflow
 

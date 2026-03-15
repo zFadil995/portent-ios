@@ -6,8 +6,8 @@ globs: ["**/Portent/**/*View*.swift", "**/Portent/**/*Navigation*.swift", "**/Po
 
 # Navigation
 
-- NavigationStack + NavigationPath; .navigationDestination(for:) for type-safe routing
-- TabView as root; per-tab NavigationStack
-- Sheets: .sheet, .fullScreenCover
-- macOS: NavigationSplitView for sidebar on larger screens
-- Deep links: onOpenURL
+- Use NavigationStack and NavigationPath; use .navigationDestination(for:) for type-safe routing
+- Use TabView as root with per-tab NavigationStack
+- Use .sheet and .fullScreenCover for sheets
+- On macOS use NavigationSplitView for sidebar on larger screens
+- Handle deep links with onOpenURL

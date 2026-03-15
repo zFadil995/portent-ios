@@ -6,8 +6,8 @@ globs: ["**/*.swift"]
 
 # Error Handling
 
-- AppError: .networkError, .httpError(code:), .decodingError, .authError, .unknown
-- ErrorToAppErrorMapper at data boundary
-- ViewModel: error: AppError?; clearError() for dismissal
-- SwiftUI .alert(isPresented:presenting:) bound to error
-- Retryable: NetworkError, 5xx, DecodingError; Fatal: AuthError, 4xx
+- Use AppError: .networkError, .httpError(code:), .decodingError, .authError, .unknown
+- Map at data boundary with ErrorToAppErrorMapper
+- Expose error: AppError? in ViewModel and clearError() for dismissal
+- Bind SwiftUI .alert(isPresented:presenting:) to error
+- Treat as retryable: NetworkError, 5xx, DecodingError; treat as fatal: AuthError, 4xx

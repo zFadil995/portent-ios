@@ -1,5 +1,5 @@
 ---
-description: iOS platform rules — references root rules; platform-specific rules live here
+description: iOS platform rules - references root rules; platform-specific rules live here
 alwaysApply: false
 globs: ["**/*.swift", "**/*.xcodeproj/**"]
 ---
@@ -17,5 +17,5 @@ Platform-specific rules for `apps/ios/`. Shared rules live in the repo root.
 
 ## Platform-Specific Rules in This Directory
 
-- `swift-style.mdc` — Swift style and conventions
+- swift-style.mdc: Swift style and conventions
 - See `agent-ios.mdc` in root `.cursor/rules/ui/` for agent protocols

@@ -6,7 +6,7 @@ globs: ["**/*.swift"]
 
 # Security
 
-- Keychain for API keys, base URLs; kSecAttrAccessibleWhenUnlockedThisDeviceOnly
-- No iCloud sync for server credentials
-- ATS: NSAllowsLocalNetworking for self-hosted; per-domain exceptions
-- Never embed secrets in source; never log credentials
+- Store API keys and base URLs in Keychain; use kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+- Do not sync server credentials to iCloud
+- Use ATS: NSAllowsLocalNetworking for self-hosted; add per-domain exceptions as needed
+- Do not embed secrets in source or log credentials
